@@ -35,9 +35,9 @@ static const char *const lang_ES[STR_MAX] = {
 	"Nombre del archivo",										// "Show filename"
 	"Contador de juegos",										// "Game counter"
 	"Imagen personalizada",										// "Custom bottom image"
-	"Auto actualiar",											// "Auto-update TWLoader"
-	"Tipo de formato",											// "TWLoader filetype"
-	"Actualizar",												// "Update TWLoader"
+	"Auto actualiar",											// "Auto-update Eventide"
+	"Tipo de formato",											// "Eventide filetype"
+	"Actualizar",												// "Update Eventide"
 	"Pantalla DS/DSi",											// "DS/DSi Boot Screen"
 	"Salud y Seguridad",										// "Health and Safety message"
 	"Pantalla de arranque",										// "Show Boot Screen"
@@ -88,10 +88,10 @@ static const char *const lang_ES[STR_MAX] = {
 	"Gris-Negro",												// "Gray-Black"
 
 	/** Settings: GUI descriptions **/
-	"El idioma para usar en TWLoader.",							// "The language to use for the UI,"
+	"El idioma para usar en Eventide.",							// "The language to use for the UI,"
 	"(también afecta al banner de las roms)",					// "including game banner text."
 
-	"El tema para TWLoader.",									// "The theme to use in TWLoader."
+	"El tema para Eventide.",									// "The theme to use in Eventide."
 	"Pulsa START para elegir un subtema.",						// "Press START for sub-themes."
 
 	"El color para el fondo superior, el borde",				// "The color of the top background,"
@@ -110,7 +110,7 @@ static const char *const lang_ES[STR_MAX] = {
 	"pantalla inferior.",										// "for the game menu."
 
 	"Descarga e instala automáticamente las",					// "Auto-download the CIA of the latest"
-	"actualizaciones durante el arranque.",						// "TWLoader version at launch."
+	"actualizaciones durante el arranque.",						// "Eventide version at launch."
 
 	"Permite mostrar (u ocultar) la pantalla",					// "Where do you want to see the"
 	"de DS/DSi.",												// "DS/DSi boot screen?"

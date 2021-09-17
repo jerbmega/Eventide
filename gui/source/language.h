@@ -1,6 +1,6 @@
 // Language functions.
-#ifndef TWLOADER_LANGUAGE_H
-#define TWLOADER_LANGUAGE_H
+#ifndef EVENTIDE_LANGUAGE_H
+#define EVENTIDE_LANGUAGE_H
 
 #include <3ds/types.h>
 
@@ -55,9 +55,9 @@ typedef enum _StrID {
 	STR_SETTINGS_FILENAME,										// "Show filename"
 	STR_SETTINGS_COUNTER,										// "Game counter"
 	STR_SETTINGS_CUSTOM_BOTTOM,									// "Custom bottom image"
-	STR_SETTINGS_AUTOUPDATE_TWLOADER,							// "Auto-update TWLoader"
-	STR_SETTINGS_TWLOADER_FILETYPE,								// "TWLoader filetype"
-	STR_SETTINGS_UPDATE_TWLOADER,								// "Update TWLoader"
+	STR_SETTINGS_AUTOUPDATE_EVENTIDE,							// "Auto-update Eventide"
+	STR_SETTINGS_EVENTIDE_FILETYPE,								// "Eventide filetype"
+	STR_SETTINGS_UPDATE_EVENTIDE,								// "Update Eventide"
 	STR_SETTINGS_DS_DSi_BOOT_SCREEN,							// "DS/DSi Boot Screen"
 	STR_SETTINGS_DS_DSi_SAFETY_MESSAGE,							// "Health and Safety message"
 	STR_SETTINGS_SHOW_BOOT_SCREEN,								// "Show Boot Screen"
@@ -111,7 +111,7 @@ typedef enum _StrID {
 	STR_SETTINGS_DESCRIPTION_LANGUAGE_1,						// "The language to use for the UI,"
 	STR_SETTINGS_DESCRIPTION_LANGUAGE_2,						// "including game banner text."
 	
-	STR_SETTINGS_DESCRIPTION_THEME_1,							// "The theme to use in TWLoader."
+	STR_SETTINGS_DESCRIPTION_THEME_1,							// "The theme to use in Eventide."
 	STR_SETTINGS_DESCRIPTION_THEME_2,							// "Press START for sub-themes."
 	
 	STR_SETTINGS_DESCRIPTION_COLOR_1,							// "The color of the top background,"
@@ -129,8 +129,8 @@ typedef enum _StrID {
 	STR_SETTINGS_DESCRIPTION_CUSTOM_BOTTOM_1,					// "Loads a custom bottom screen image"
 	STR_SETTINGS_DESCRIPTION_CUSTOM_BOTTOM_2,					// "for the DSi Menu theme."
 	
-	STR_SETTINGS_DESCRIPTION_AUTOUPDATE_TWLOADER_1,				// "Auto-update to the latest"
-	STR_SETTINGS_DESCRIPTION_AUTOUPDATE_TWLOADER_2,				// "TWLoader version at launch."
+	STR_SETTINGS_DESCRIPTION_AUTOUPDATE_EVENTIDE_1,				// "Auto-update to the latest"
+	STR_SETTINGS_DESCRIPTION_AUTOUPDATE_EVENTIDE_2,				// "Eventide version at launch."
 	
 	STR_SETTINGS_DESCRIPTION_SHOW_BOOT_SCREEN_1,				// "Where do you want to see the"
 	STR_SETTINGS_DESCRIPTION_SHOW_BOOT_SCREEN_2,				// "DS/DSi boot screen?"
@@ -232,4 +232,4 @@ typedef enum _StrID {
  */
 const wchar_t *TR(StrID strID);
 
-#endif /* TWLOADER_LANGUAGE_H */
+#endif /* EVENTIDE_LANGUAGE_H */

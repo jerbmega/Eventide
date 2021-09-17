@@ -55,7 +55,7 @@ int main() {
 	char gameid[4];
 	
 	if (fatInitDefault()) {
-		CIniFile twloaderini( "sd:/_nds/twloader/settings.ini" );
+		CIniFile eventideini( "sd:/_nds/eventide/settings.ini" );
 
 		char *p = (char*)PersonalData->name;
 		
@@ -69,32 +69,32 @@ int main() {
 		
 		// if (logEnabled)	LogFMA("TWL.Main", "Got username", p);
 		
-		twloaderini.SetString("FRONTEND","NAME", p);
-		twloaderini.SaveIniFile( "sd:/_nds/twloader/settings.ini" );
+		eventideini.SetString("FRONTEND","NAME", p);
+		eventideini.SaveIniFile( "sd:/_nds/eventide/settings.ini" );
 		// if (logEnabled)	LogFMA("TWL.Main", "Saved username to GUI", p);
 		
-		gamesettingsPath = twloaderini.GetString( "TWL-MODE", "GAMESETTINGS_PATH", "");
+		gamesettingsPath = eventideini.GetString( "TWL-MODE", "GAMESETTINGS_PATH", "");
 		
 		if(!access(gamesettingsPath.c_str(), F_OK)) {
 			CIniFile gamesettingsini( gamesettingsPath );
 			if(gamesettingsini.GetInt("GAME-SETTINGS","TWL_CLOCK",0) == -1) {
-				if(twloaderini.GetInt("TWL-MODE","TWL_CLOCK",0) == 0) { TWLCLK = false; }
+				if(eventideini.GetInt("TWL-MODE","TWL_CLOCK",0) == 0) { TWLCLK = false; }
 			} else {
 				if(gamesettingsini.GetInt("GAME-SETTINGS","TWL_CLOCK",0) == 0) {
 					TWLCLK = false;
 				}
 			}
 		} else {
-			if(twloaderini.GetInt("TWL-MODE","TWL_CLOCK",0) == 0) { TWLCLK = false; }
+			if(eventideini.GetInt("TWL-MODE","TWL_CLOCK",0) == 0) { TWLCLK = false; }
 		}
 
-		if(twloaderini.GetInt("TWL-MODE","DEBUG",0) != -1) {
+		if(eventideini.GetInt("TWL-MODE","DEBUG",0) != -1) {
 			consoleOn = true;
 			consoleDemoInit();
 		}
 
 		if( TWLCLK == false ) {
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1) {
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1) {
 				printf("TWL_CLOCK ON\n");		
 			}
 			fifoSendValue32(FIFO_USER_04, 1);
@@ -104,26 +104,26 @@ int main() {
 			swiWaitForVBlank();
 		}
 
-		SOUND_FREQ = twloaderini.GetInt("TWL-MODE","SOUND_FREQ",0);
+		SOUND_FREQ = eventideini.GetInt("TWL-MODE","SOUND_FREQ",0);
 		if(SOUND_FREQ) {
 			fifoSendValue32(FIFO_MAXMOD, 1);
 			//if (logEnabled)	LogFM("TWL.Main", "Sound/Microphone frequency set to 47.61 kHz");
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1) {
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1) {
 				printf("SOUND_FREQ 47.61 kHz\n");		
 			}
 		} //else {
 			//if (logEnabled)	LogFM("TWL.Main", "Sound/Microphone frequency set to 32.73 kHz");
 		//}
 
-		if(twloaderini.GetInt("TWL-MODE","SLOT1_ENABLESD",0) == 1) {
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1) {
+		if(eventideini.GetInt("TWL-MODE","SLOT1_ENABLESD",0) == 1) {
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1) {
 				printf("SD access ON\n");		
 			}
 			EnableSD = true;
 			// Tell Arm7 to use alternate SCFG_EXT values.
 			fifoSendValue32(FIFO_USER_05, 1);
-		} else if(twloaderini.GetInt("TWL-MODE","FORWARDER",0) == 1) {
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1) {
+		} else if(eventideini.GetInt("TWL-MODE","FORWARDER",0) == 1) {
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1) {
 				printf("SD access ON\n");		
 			}
 			EnableSD = true;
@@ -136,7 +136,7 @@ int main() {
 		// 	fifoSendValue32(FIFO_USER_06, 1);
 		// }
 
-		if(twloaderini.GetInt("TWL-MODE","RESET_SLOT1",0) == 1) {
+		if(eventideini.GetInt("TWL-MODE","RESET_SLOT1",0) == 1) {
 			fifoSendValue32(FIFO_USER_02, 1);
 			fifoSendValue32(FIFO_USER_07, 1);
 		}

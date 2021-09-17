@@ -143,15 +143,15 @@ int main(int argc, char **argv) {
 	vramSetBankH(VRAM_H_SUB_BG);
 	consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 15, 0, false, true);
 
-	/* Log file is dissabled by default. If _nds/twloader/log exist, we turn log file on, else, log is dissabled */
+	/* Log file is dissabled by default. If _nds/eventide/log exist, we turn log file on, else, log is dissabled */
 	//struct stat logBuf;
-	//logEnabled = stat("sd:/_nds/twloader/log", &logBuf) == 0;
+	//logEnabled = stat("sd:/_nds/eventide/log", &logBuf) == 0;
 	/* Log configuration file end */
 	
 	if(fatInitDefault()) {
-		printf ("Reading TWLoader settings\n");
-		CIniFile twloaderini( "sd:/_nds/twloader/settings.ini" );
-		printf ("TWLoader settings read\n");
+		printf ("Reading Eventide settings\n");
+		CIniFile eventideini( "sd:/_nds/eventide/settings.ini" );
+		printf ("Eventide settings read\n");
 		// if (logEnabled)	LogFM("Flashcard.Main", "Fat inited");
 
 		// overwrite reboot stub identifier
@@ -161,7 +161,7 @@ int main(int argc, char **argv) {
 		// defaultExceptionHandler();
 
 		printf ("Reading flashcard ini folder\n");
-		fcromfolder = twloaderini.GetString( "FRONTEND", "FCROM_FOLDER", "");
+		fcromfolder = eventideini.GetString( "FRONTEND", "FCROM_FOLDER", "");
 		printf ("Removing trailing slashes\n");
 		RemoveTrailingSlashes(fcromfolder);
 		printf ("Done!\n");
@@ -225,7 +225,7 @@ int main(int argc, char **argv) {
 			// if (logEnabled)	LogFMA("Flashcard.Main", ".NDS file read:", filePath);
 						
 			// Set banner path
-			snprintf(bannerfilepath, sizeof(bannerfilepath), "sd:/_nds/twloader/bnricons/flashcard/%s.bin", filename.c_str());
+			snprintf(bannerfilepath, sizeof(bannerfilepath), "sd:/_nds/eventide/bnricons/flashcard/%s.bin", filename.c_str());
 			bannerfilepathfixed = ReplaceAll(bannerfilepath, ".nds", ".ini");
 
 			// Set .ini path
@@ -294,7 +294,7 @@ int main(int argc, char **argv) {
 			fclose(ndsFile);
 		}
 		
-		runFile("fat:/_nds/twloader.nds");	// Restart "Add Games"
+		runFile("fat:/_nds/eventide.nds");	// Restart "Add Games"
 
 		/* while (1) {
 			swiWaitForVBlank();

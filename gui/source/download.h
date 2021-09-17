@@ -32,15 +32,15 @@ enum RomLocation {
 int downloadFile(const char* url, const char* file, MediaType mediaType);
 
 /**
- * Check for a TWLoader update.
+ * Check for a Eventide update.
  * @return 0 if an update is available; non-zero if up to date or an error occurred.
  */
 int checkUpdate(void);
 
 /**
- * Download the TWLoader CIAs.
+ * Download the Eventide CIAs.
  */
-void DownloadTWLoaderCIAs(void);
+void DownloadEventideCIAs(void);
 
 /**
  * Check for missing files, and download them.

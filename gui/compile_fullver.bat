@@ -1,9 +1,9 @@
 @echo off
 make -j8 COMPILE_3DSX=0
-copy "TWLoader.cia" "../TWLoader-update/TWLoader.cia"
-copy "TWLoader.cia" "../7zfile/sdroot/_nds/twloader/cia/TWLoader.cia"
-copy "TWLoader.3dsx" "../7zfile/sdroot/3ds/TWLoader/TWLoader.3dsx"
-copy "TWLoader.3dsx" "../TWLoader-update/TWLoader.3dsx"
-copy "TWLoader.smdh" "../7zfile/sdroot/3ds/TWLoader/TWLoader.smdh"
-copy "TWLoader.smdh" "../TWLoader-update/TWLoader.smdh"
+copy "Eventide.cia" "../Eventide-update/Eventide.cia"
+copy "Eventide.cia" "../7zfile/sdroot/_nds/eventide/cia/Eventide.cia"
+copy "Eventide.3dsx" "../7zfile/sdroot/3ds/Eventide/Eventide.3dsx"
+copy "Eventide.3dsx" "../Eventide-update/Eventide.3dsx"
+copy "Eventide.smdh" "../7zfile/sdroot/3ds/Eventide/Eventide.smdh"
+copy "Eventide.smdh" "../Eventide-update/Eventide.smdh"
 pause

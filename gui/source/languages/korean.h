@@ -35,9 +35,9 @@ static const char *const lang_KO[STR_MAX] = {
 	"파일이름 보기",													// "Show filename"
 	"기게임 카운터",													// "Game counter"
 	"커스텀 하단 이미지",												// "Custom bottom image"
-	"TWLoader 자동 업데이트",										// "Auto-update TWLoader"
-	"TWLoader filetype",										// "TWLoader filetype"
-	"TWLoader 업데이트",											// "Update TWLoader"
+	"Eventide 자동 업데이트",										// "Auto-update Eventide"
+	"Eventide filetype",										// "Eventide filetype"
+	"Eventide 업데이트",											// "Update Eventide"
 	"DS/DSi 부트 스크린",											// "DS/DSi Boot Screen"
 	"안전 및 주의사항 메세지",											// "Health and Safety message"
 	"Show Boot Screen",											// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_KO[STR_MAX] = {
 	"게임 배너를 포함해 ",												// "The language to use for the UI,"
 	"UI에서 사용할 언어",												// "including game banner text."
 
-	"TWLoader 테마",												// "The theme to use in TWLoader."
+	"Eventide 테마",												// "The theme to use in Eventide."
 	"서브테마를 설정하려면 START 를 누르세요",								// "Press START for sub-themes."
 
 	"위쪽 바탕화면 색상",												// "The color of the top background,"
@@ -110,7 +110,7 @@ static const char *const lang_KO[STR_MAX] = {
 	"사용자 설정 스크린 이미지 띄우기.",									// "for the game menu."
 
 	"시작 시",														// "Auto-download the CIA of the latest"
-	"TWLoader 최신 CIA 자동 다운로드",									// "TWLoader version at launch."
+	"Eventide 최신 CIA 자동 다운로드",									// "Eventide version at launch."
 
 	"Where do you want to see the",								// "Where do you want to see the"
 	"DS/DSi boot screen?",										// "DS/DSi boot screen?"

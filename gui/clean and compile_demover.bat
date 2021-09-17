@@ -1,8 +1,8 @@
 @echo off
 make clean
 make -j8 COMPILE_3DSX=1 3dsx
-copy "TWLoader.3dsx" "../7zfile/sdroot/3ds/TWLoader_demo/TWLoader_demo.3dsx"
-copy "TWLoader.3dsx" "../TWLoader-update/TWLoader_demo.3dsx"
-copy "TWLoader.smdh" "../7zfile/sdroot/3ds/TWLoader_demo/TWLoader_demo.smdh"
-copy "TWLoader.smdh" "../TWLoader-update/TWLoader_demo.smdh"
+copy "Eventide.3dsx" "../7zfile/sdroot/3ds/Eventide_demo/Eventide_demo.3dsx"
+copy "Eventide.3dsx" "../Eventide-update/Eventide_demo.3dsx"
+copy "Eventide.smdh" "../7zfile/sdroot/3ds/Eventide_demo/Eventide_demo.smdh"
+copy "Eventide.smdh" "../Eventide-update/Eventide_demo.smdh"
 pause

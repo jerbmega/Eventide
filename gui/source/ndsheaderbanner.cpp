@@ -254,7 +254,7 @@ u32 getSDKVersion(FILE* ndsFile, const char* filename) {
  */
 int cacheBanner(FILE* ndsFile, const char* filename, const char* counter1, const char* counter2, bool isCia) {
 	char bannerpath[256];
-	snprintf(bannerpath, sizeof(bannerpath), "sdmc:/_nds/twloader/bnricons/%s.bin", filename);
+	snprintf(bannerpath, sizeof(bannerpath), "sdmc:/_nds/eventide/bnricons/%s.bin", filename);
 
 	if (!access(bannerpath, F_OK)) {
 		// Banner is already cached.

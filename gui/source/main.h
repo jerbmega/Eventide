@@ -1,5 +1,5 @@
-#ifndef TWLOADER_MAIN_H
-#define TWLOADER_MAIN_H
+#ifndef EVENTIDE_MAIN_H
+#define EVENTIDE_MAIN_H
 
 #include "graphic.h"
 #include "pp2d/pp2d.h"
@@ -78,7 +78,7 @@ extern std::string settings_SDK5unofficialbootstrapver;
 extern char settings_vertext[13];
 
 extern const u64 TWLNAND_TID;	// TWLNAND title ID.
-extern const u64 NTRLAUNCHER_TID;	// TWLoader's NTR Launcher Title ID.
+extern const u64 NTRLAUNCHER_TID;	// Eventide's NTR Launcher Title ID.
 extern bool checkTWLNANDSide(void);
 extern bool checkTWLNANDSide2(void);
 
@@ -126,4 +126,4 @@ extern char romsel_counter2gb[16];	// Number of GB ROMs on the SD card.
 extern char romsel_counter2nes[16];	// Number of NES ROMs on the SD card.
 
 
-#endif /* TWLOADER_MAIN_H */
+#endif /* EVENTIDE_MAIN_H */

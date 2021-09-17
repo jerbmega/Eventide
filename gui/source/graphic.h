@@ -10,7 +10,7 @@ extern size_t dialogboxtex;
 extern size_t dboxtex_iconbox;
 extern size_t dboxtex_button;
 extern size_t dboxtex_buttonback;
-extern size_t twloaderlogotex;
+extern size_t eventidelogotex;
 extern size_t settingslogotex;
 extern size_t settingslogotwltex; 
 extern size_t settingslogoloadertex; 

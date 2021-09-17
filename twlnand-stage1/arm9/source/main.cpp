@@ -51,12 +51,12 @@ int main(int argc, char **argv) {
 //---------------------------------------------------------------------------------
 
 	if (fatInitDefault()) {
-		/* Log file is dissabled by default. If _nds/twloader/log exist, we turn log file on, else, log is dissabled */
+		/* Log file is dissabled by default. If _nds/eventide/log exist, we turn log file on, else, log is dissabled */
 		struct stat logBuf;
-		logEnabled = stat("sd:/_nds/twloader/log", &logBuf) == 0;
+		logEnabled = stat("sd:/_nds/eventide/log", &logBuf) == 0;
 		/* Log configuration file end */
 		
-		CIniFile twloaderini( "sd:/_nds/twloader/settings.ini" );
+		CIniFile eventideini( "sd:/_nds/eventide/settings.ini" );
 		
 		char *p = (char*)PersonalData->name;
 		
@@ -70,18 +70,18 @@ int main(int argc, char **argv) {
 		
 		if (logEnabled)	LogFMA("TWL.Main", "Got username", p);
 		
-		twloaderini.SetString("FRONTEND","NAME", p);
-		twloaderini.SaveIniFile( "sd:/_nds/twloader/settings.ini" );
+		eventideini.SetString("FRONTEND","NAME", p);
+		eventideini.SaveIniFile( "sd:/_nds/eventide/settings.ini" );
 		if (logEnabled)	LogFMA("TWL.Main", "Saved username to GUI", p);
 		
-		runNdsFile ("sd:/_nds/twloader/TWLD.twldr", 0, 0);
+		runNdsFile ("sd:/_nds/eventide/TWLD.twldr", 0, 0);
 
 		// Subscreen as a console
 		videoSetModeSub(MODE_0_2D);
 		vramSetBankH(VRAM_H_SUB_BG);
 		consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 15, 0, false, true);	
 
-		iprintf ("sd:/_nds/twloader/TWLD.twldr\n");		
+		iprintf ("sd:/_nds/eventide/TWLD.twldr\n");		
 		iprintf ("not found.\n");		
 		iprintf ("\n");		
 		iprintf ("Press B to return to\n");		

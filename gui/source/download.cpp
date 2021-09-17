@@ -28,8 +28,8 @@ using std::vector;
 
 #include "json/json.h"
 
-const char* JSON_URL = "http://cdn.kaeru.world/TWLoader-update/update.json";
-const char* JSON_NIGHTLIES_URL = "http://cdn.kaeru.world/TWLoader-update/master/beta/updatenightlies.json";
+const char* JSON_URL = "http://cdn.kaeru.world/Eventide-update/update.json";
+const char* JSON_NIGHTLIES_URL = "http://cdn.kaeru.world/Eventide-update/master/beta/updatenightlies.json";
 bool updateGUI = false;
 bool updateNAND = false;
 bool updateNAND_part2 = false;
@@ -245,13 +245,13 @@ std::vector<std::string> internal_json_reader(json_value* json, json_value* val,
 }
 
 /**
- * Check for a TWLoader update.
+ * Check for a Eventide update.
  * @return 0 if an update is available; non-zero if up to date or an error occurred.
  */
 int checkUpdate(void) {
 	if (logEnabled)	LogFM("checkUpdate", "Checking updates...");
 	snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-	"Now checking TWLoader version...");
+	"Now checking Eventide version...");
 	if (screenmode == SCREEN_MODE_SETTINGS) {
 		pp2d_begin_draw(GFX_TOP, GFX_LEFT);
 		pp2d_draw_texture_scale(settingstex, 0, 0, 1.32, 1);
@@ -274,7 +274,7 @@ int checkUpdate(void) {
 		if (logEnabled)	LogFM("checkUpdate", "Error opening context.");
 		return -1;
 	}
-	if(R_FAILED(httpcAddRequestHeaderField(&context, "User-Agent", "TWLoader"))) {
+	if(R_FAILED(httpcAddRequestHeaderField(&context, "User-Agent", "Eventide"))) {
 		if (logEnabled)	LogFM("checkUpdate", "Error requesting header field.");
 		return -1;
 	}
@@ -359,7 +359,7 @@ int checkUpdate(void) {
 						if (logEnabled)	LogFM("checkUpdate", "Error opening context (nightly).");
 						return -1;
 					}
-					if(R_FAILED(httpcAddRequestHeaderField(&contextNightly, "User-Agent", "TWLoader"))) {
+					if(R_FAILED(httpcAddRequestHeaderField(&contextNightly, "User-Agent", "Eventide"))) {
 						if (logEnabled)	LogFM("checkUpdate", "Error requesting header field (nightly).");
 						return -1;
 					}
@@ -539,7 +539,7 @@ int checkUpdate(void) {
 				} else {
 					// Version is lower or same.
 					if (logEnabled)	LogFMA("checkUpdate", "Comparing...", "Are the same or lower");
-					if (logEnabled)	LogFM("checkUpdate", "TWLoader is up-to-date!");
+					if (logEnabled)	LogFM("checkUpdate", "Eventide is up-to-date!");
 
 					free(jsonText);
 					httpcCloseContext(&context);
@@ -551,7 +551,7 @@ int checkUpdate(void) {
 						pp2d_draw_texture(settingstex, 0, 0);
 						pp2d_draw_texture(dialogboxtex, 0, 0);
 						static const char msg[] =
-							"TWLoader is up-to-date.\n"
+							"Eventide is up-to-date.\n"
 							"\n"
 							"\n"
 							"\n"
@@ -583,7 +583,7 @@ int checkUpdate(void) {
 						}
 					} else {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-						"TWLoader is up-to-date.");
+						"Eventide is up-to-date.");
 						initdbox_setWaitTime = 60;
 						while (initdbox_setWaitTime == 60);
 					}
@@ -690,15 +690,15 @@ int checkUpdate(void) {
 }
 
 /**
- * Download the TWLoader CIAs.
+ * Download the Eventide CIAs.
  */
-void DownloadTWLoaderCIAs(void) {
+void DownloadEventideCIAs(void) {
 
 	bool checkanswer = true;
 	bool yestoupdate = false;
 	
 	snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-		"An update for TWLoader is available.\n"
+		"An update for Eventide is available.\n"
 		"Do you want to update?\n"
 		"\n"
 		"\n"
@@ -744,7 +744,7 @@ void DownloadTWLoaderCIAs(void) {
 		if (updateGUI) {
 			if (settings.ui.filetype == 0 || settings.ui.filetype == 2) {
 				snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-					"Now downloading latest TWLoader version...\n"
+					"Now downloading latest Eventide version...\n"
 					"(GUI, CIA)\n"
 					"\n"
 					"Do not turn off the power.\n");
@@ -759,26 +759,26 @@ void DownloadTWLoaderCIAs(void) {
 				if(!isNightly){ 
 					if(stat("sdmc:/cia",&st) == 0){		
 						// Use root/cia folder instead
-						resGUI = downloadFile(gui_url.c_str(),"/cia/TWLoader.cia", MEDIA_SD_CIA);
+						resGUI = downloadFile(gui_url.c_str(),"/cia/Eventide.cia", MEDIA_SD_CIA);
 					}else{
-						mkdir("sdmc:/_nds/twloader/cia", 0777); // Use twloader/cia folder instead
-						resGUI = downloadFile(gui_url.c_str(),"/_nds/twloader/cia/TWLoader.cia", MEDIA_SD_CIA);
+						mkdir("sdmc:/_nds/eventide/cia", 0777); // Use eventide/cia folder instead
+						resGUI = downloadFile(gui_url.c_str(),"/_nds/eventide/cia/Eventide.cia", MEDIA_SD_CIA);
 					}
 				}else{
 					if(stat("sdmc:/cia",&st) == 0){		
 						// Use root/cia folder instead
-						resGUI = downloadFile(nightly_url.c_str(),"/cia/TWLoader-beta.cia", MEDIA_SD_CIA);
-						resGUI = downloadFile(nightly_zip.c_str(), "/cia/TWLoader-beta.zip", MEDIA_SD_FILE);
+						resGUI = downloadFile(nightly_url.c_str(),"/cia/Eventide-beta.cia", MEDIA_SD_CIA);
+						resGUI = downloadFile(nightly_zip.c_str(), "/cia/Eventide-beta.zip", MEDIA_SD_FILE);
 					}else{
-						mkdir("sdmc:/_nds/twloader/cia", 0777); // Use twloader/cia folder instead
-						resGUI = downloadFile(nightly_url.c_str(),"/_nds/twloader/cia/TWLoader-beta.cia", MEDIA_SD_CIA);
-						resGUI = downloadFile(nightly_zip.c_str(),"/_nds/twloader/cia/TWLoader-beta.cia", MEDIA_SD_FILE);
+						mkdir("sdmc:/_nds/eventide/cia", 0777); // Use eventide/cia folder instead
+						resGUI = downloadFile(nightly_url.c_str(),"/_nds/eventide/cia/Eventide-beta.cia", MEDIA_SD_CIA);
+						resGUI = downloadFile(nightly_zip.c_str(),"/_nds/eventide/cia/Eventide-beta.cia", MEDIA_SD_FILE);
 					}
 				}
 			}
 			if (settings.ui.filetype == 1 || settings.ui.filetype == 2) {
 				snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-					"Now downloading latest TWLoader version...\n"
+					"Now downloading latest Eventide version...\n"
 					"(GUI, 3DSX)\n"
 					"\n"
 					"Do not turn off the power.\n");
@@ -791,19 +791,19 @@ void DownloadTWLoaderCIAs(void) {
 				}
 
 				if (isDemo) {
-					mkdir("sdmc:/3ds/TWLoader_demo", 0777);
-					resGUI_3DSX = downloadFile(demo_gui_3dsx_url.c_str(),"/3ds/TWLoader_demo/TWLoader_demo.3dsx", MEDIA_SD_FILE);
-					resGUI_SMDH = downloadFile(demo_gui_smdh_url.c_str(),"/3ds/TWLoader_demo/TWLoader_demo.smdh", MEDIA_SD_FILE);
+					mkdir("sdmc:/3ds/Eventide_demo", 0777);
+					resGUI_3DSX = downloadFile(demo_gui_3dsx_url.c_str(),"/3ds/Eventide_demo/Eventide_demo.3dsx", MEDIA_SD_FILE);
+					resGUI_SMDH = downloadFile(demo_gui_smdh_url.c_str(),"/3ds/Eventide_demo/Eventide_demo.smdh", MEDIA_SD_FILE);
 				} else {
-					mkdir("sdmc:/3ds/TWLoader", 0777);
-					resGUI_3DSX = downloadFile(gui_3dsx_url.c_str(),"/3ds/TWLoader/TWLoader.3dsx", MEDIA_SD_FILE);
-					resGUI_SMDH = downloadFile(gui_smdh_url.c_str(),"/3ds/TWLoader/TWLoader.smdh", MEDIA_SD_FILE);
+					mkdir("sdmc:/3ds/Eventide", 0777);
+					resGUI_3DSX = downloadFile(gui_3dsx_url.c_str(),"/3ds/Eventide/Eventide.3dsx", MEDIA_SD_FILE);
+					resGUI_SMDH = downloadFile(gui_smdh_url.c_str(),"/3ds/Eventide/Eventide.smdh", MEDIA_SD_FILE);
 				}
 			}
 		}
 		if (resGUI == 0 && updateNAND) {
 			snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-				"Now downloading latest TWLoader version...\n"
+				"Now downloading latest Eventide version...\n"
 				"(TWLNAND side CIA (part 1))\n"
 				"\n"
 				"Do not turn off the power.\n");
@@ -824,14 +824,14 @@ void DownloadTWLoaderCIAs(void) {
 
 			if(stat("sdmc:/cia",&st) == 0){		
 				// Use root/cia folder instead
-				resNAND = downloadFile(nand_url.c_str(),"/cia/TWLoader - TWLNAND side.cia", MEDIA_NAND_CIA);
+				resNAND = downloadFile(nand_url.c_str(),"/cia/Eventide - TWLNAND side.cia", MEDIA_NAND_CIA);
 			}else{		
-				resNAND = downloadFile(nand_url.c_str(),"/_nds/twloader/cia/TWLoader - TWLNAND side.cia", MEDIA_NAND_CIA);
+				resNAND = downloadFile(nand_url.c_str(),"/_nds/eventide/cia/Eventide - TWLNAND side.cia", MEDIA_NAND_CIA);
 			}
 		}
 		if (resNAND == 0 && updateNAND_STG2) {
 			snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-				"Now downloading latest TWLoader version...\n"
+				"Now downloading latest Eventide version...\n"
 				"(SD stage of (part 1 of) TWLNAND side)\n"
 				"\n"
 				"Do not turn off the power.\n");
@@ -843,12 +843,12 @@ void DownloadTWLoaderCIAs(void) {
 				pp2d_end_draw();
 			}
 
-			resNAND_STG2 = downloadFile(nand_twld_url.c_str(),"/_nds/twloader/TWLD.twldr", MEDIA_SD_FILE);
+			resNAND_STG2 = downloadFile(nand_twld_url.c_str(),"/_nds/eventide/TWLD.twldr", MEDIA_SD_FILE);
 			
 		}
 		if (resNAND_STG2 == 0 && updateNAND_part2) {
 			snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-				"Now downloading latest TWLoader version...\n"
+				"Now downloading latest Eventide version...\n"
 				"(TWLNAND side CIA (part 2))\n"
 				"\n"
 				"Do not turn off the power.\n");
@@ -869,9 +869,9 @@ void DownloadTWLoaderCIAs(void) {
 
 			if(stat("sdmc:/cia",&st) == 0){		
 				// Use root/cia folder instead
-				resNAND_STG2 = downloadFile(nand_part2_url.c_str(),"/cia/TWLoader - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
+				resNAND_STG2 = downloadFile(nand_part2_url.c_str(),"/cia/Eventide - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
 			}else{		
-				resNAND_STG2 = downloadFile(nand_part2_url.c_str(),"/_nds/twloader/cia/TWLoader - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
+				resNAND_STG2 = downloadFile(nand_part2_url.c_str(),"/_nds/eventide/cia/Eventide - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
 			}
 		} 
 		if(resGUI_SMDH == 0) {
@@ -915,7 +915,7 @@ void DownloadTWLoaderCIAs(void) {
 				pp2d_end_draw();
 			}
 
-			int res = downloadFile(ace_rpg_url.c_str(),"/_nds/twloader/loadflashcard/ace_rpg.nds", MEDIA_SD_FILE);
+			int res = downloadFile(ace_rpg_url.c_str(),"/_nds/eventide/loadflashcard/ace_rpg.nds", MEDIA_SD_FILE);
 			if (res != 0) {
 				if (screenmode == SCREEN_MODE_SETTINGS) {
 					DialogBoxDisappear(12, 16, "Download failed.");
@@ -993,7 +993,7 @@ void DownloadTWLoaderCIAs(void) {
 				pp2d_end_draw();
 			}
 
-			int res = downloadFile(r4_url.c_str(),"/_nds/twloader/loadflashcard/r4.nds", MEDIA_SD_FILE);
+			int res = downloadFile(r4_url.c_str(),"/_nds/eventide/loadflashcard/r4.nds", MEDIA_SD_FILE);
 			if (res != 0) {
 				if (screenmode == SCREEN_MODE_SETTINGS) {
 					DialogBoxDisappear(12, 16, "Download failed.");
@@ -1047,7 +1047,7 @@ int DownloadMissingFiles(void) {
 		if (logEnabled)	LogFM("DownloadMissingFiles", "Error opening context.");
 		return -1;
 	}
-	if(R_FAILED(httpcAddRequestHeaderField(&context, "User-Agent", "TWLoader"))) {
+	if(R_FAILED(httpcAddRequestHeaderField(&context, "User-Agent", "Eventide"))) {
 		if (logEnabled)	LogFM("DownloadMissingFiles", "Error requesting header field.");
 		return -1;
 	}
@@ -1198,9 +1198,9 @@ int DownloadMissingFiles(void) {
 					int res;
 					if(stat("sdmc:/cia",&st) == 0){		
 						// Use root/cia folder instead
-						res = downloadFile(nand_url.c_str(),"/cia/TWLoader - TWLNAND side.cia", MEDIA_NAND_CIA);
+						res = downloadFile(nand_url.c_str(),"/cia/Eventide - TWLNAND side.cia", MEDIA_NAND_CIA);
 					}else{		
-						res = downloadFile(nand_url.c_str(),"/_nds/twloader/cia/TWLoader - TWLNAND side.cia", MEDIA_NAND_CIA);
+						res = downloadFile(nand_url.c_str(),"/_nds/eventide/cia/Eventide - TWLNAND side.cia", MEDIA_NAND_CIA);
 					}
 					if (res != 0) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
@@ -1211,7 +1211,7 @@ int DownloadMissingFiles(void) {
 				}
 				if (!checkTWLNANDSide2()) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
-						"Now downloading latest TWLoader version...\n"
+						"Now downloading latest Eventide version...\n"
 						"(TWLNAND side CIA (part 2))\n"
 						"\n"
 						"Do not turn off the power.\n");
@@ -1219,9 +1219,9 @@ int DownloadMissingFiles(void) {
 					int res;
 					if(stat("sdmc:/cia",&st) == 0){		
 						// Use root/cia folder instead
-						res = downloadFile(nand_part2_url.c_str(),"/cia/TWLoader - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
+						res = downloadFile(nand_part2_url.c_str(),"/cia/Eventide - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
 					}else{		
-						res = downloadFile(nand_part2_url.c_str(),"/_nds/twloader/cia/TWLoader - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
+						res = downloadFile(nand_part2_url.c_str(),"/_nds/eventide/cia/Eventide - TWLNAND side (part 2).cia", MEDIA_NAND_CIA);
 					}
 					if (res != 0) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
@@ -1230,14 +1230,14 @@ int DownloadMissingFiles(void) {
 						while (initdbox_setWaitTime == 30);
 					}
 				}
-				if (access("sdmc:/_nds/twloader/TWLD.twldr", F_OK) == -1) {
+				if (access("sdmc:/_nds/eventide/TWLD.twldr", F_OK) == -1) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 						"Now downloading missing file...\n"
 						"(SD stage of (part 1 of) TWLNAND side)\n"
 						"\n"
 						"Do not turn off the power.\n");
 
-					int res = downloadFile(nand_twld_url.c_str(),"/_nds/twloader/TWLD.twldr", MEDIA_SD_FILE);
+					int res = downloadFile(nand_twld_url.c_str(),"/_nds/eventide/TWLD.twldr", MEDIA_SD_FILE);
 					if (res != 0) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 							"Download failed.");
@@ -1245,14 +1245,14 @@ int DownloadMissingFiles(void) {
 						while (initdbox_setWaitTime == 30);
 					}
 				}
-				if (access("sdmc:/_nds/twloader/loadflashcard/ace_rpg.nds", F_OK) == -1) {
+				if (access("sdmc:/_nds/eventide/loadflashcard/ace_rpg.nds", F_OK) == -1) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 						"Now downloading missing file...\n"
 						"(ace_rpg.nds)\n"
 						"\n"
 						"Do not turn off the power.\n");
 
-					int res = downloadFile(ace_rpg_url.c_str(),"/_nds/twloader/loadflashcard/ace_rpg.nds", MEDIA_SD_FILE);
+					int res = downloadFile(ace_rpg_url.c_str(),"/_nds/eventide/loadflashcard/ace_rpg.nds", MEDIA_SD_FILE);
 					if (res != 0) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 							"Download failed.");
@@ -1290,14 +1290,14 @@ int DownloadMissingFiles(void) {
 						while (initdbox_setWaitTime == 30);
 					}
 				}
-				if (access("sdmc:/_nds/twloader/loadflashcard/r4.nds", F_OK) == -1) {
+				if (access("sdmc:/_nds/eventide/loadflashcard/r4.nds", F_OK) == -1) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 						"Now downloading missing file...\n"
 						"(r4.nds)\n"
 						"\n"
 						"Do not turn off the power.\n");
 
-					int res = downloadFile(r4_url.c_str(),"/_nds/twloader/loadflashcard/r4.nds", MEDIA_SD_FILE);
+					int res = downloadFile(r4_url.c_str(),"/_nds/eventide/loadflashcard/r4.nds", MEDIA_SD_FILE);
 					if (res != 0) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 							"Download failed.");
@@ -1307,14 +1307,14 @@ int DownloadMissingFiles(void) {
 				}
 
 				// Download nds-bootstrap version data
-				if (access("sdmc:/_nds/twloader/release-bootstrap", F_OK) == -1) {
+				if (access("sdmc:/_nds/eventide/release-bootstrap", F_OK) == -1) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 						"Now downloading SDK1-4 release-bootstrap...\n"
 						"(Version data)"
 						"\n"
 						"Do not turn off the power.\n");
 
-					FILE* ver = fopen("sdmc:/_nds/twloader/release-bootstrap", "w");
+					FILE* ver = fopen("sdmc:/_nds/eventide/release-bootstrap", "w");
 					if(!ver) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 							"Download failed.");
@@ -1324,14 +1324,14 @@ int DownloadMissingFiles(void) {
 					fputs(release_BS_ver.c_str(), ver);
 					fclose(ver);
 				}
-				if (access("sdmc:/_nds/twloader/release-bootstrap-sdk5", F_OK) == -1) {
+				if (access("sdmc:/_nds/eventide/release-bootstrap-sdk5", F_OK) == -1) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 						"Now downloading SDK5 release-bootstrap...\n"
 						"(Version data)"
 						"\n"
 						"Do not turn off the power.\n");
 
-					FILE* ver = fopen("sdmc:/_nds/twloader/release-bootstrap-sdk5", "w");
+					FILE* ver = fopen("sdmc:/_nds/eventide/release-bootstrap-sdk5", "w");
 					if(!ver) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 							"Download failed.");
@@ -1341,14 +1341,14 @@ int DownloadMissingFiles(void) {
 					fputs(release_SDK5BS_ver.c_str(), ver);
 					fclose(ver);
 				}
-				if (access("sdmc:/_nds/twloader/unofficial-bootstrap", F_OK) == -1) {
+				if (access("sdmc:/_nds/eventide/unofficial-bootstrap", F_OK) == -1) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 						"Now downloading SDK1-4 unofficial-bootstrap...\n"
 						"(Version data)"
 						"\n"
 						"Do not turn off the power.\n");
 
-					FILE* ver = fopen("sdmc:/_nds/twloader/unofficial-bootstrap", "w");
+					FILE* ver = fopen("sdmc:/_nds/eventide/unofficial-bootstrap", "w");
 					if(!ver) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 							"Download failed.");
@@ -1358,14 +1358,14 @@ int DownloadMissingFiles(void) {
 					fputs(unofficial_BS_ver.c_str(), ver);
 					fclose(ver);
 				}
-				if (access("sdmc:/_nds/twloader/unofficial-bootstrap-sdk5", F_OK) == -1) {
+				if (access("sdmc:/_nds/eventide/unofficial-bootstrap-sdk5", F_OK) == -1) {
 					snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 						"Now downloading SDK5 unofficial-bootstrap...\n"
 						"(Version data)"
 						"\n"
 						"Do not turn off the power.\n");
 
-					FILE* ver = fopen("sdmc:/_nds/twloader/unofficial-bootstrap-sdk5", "w");
+					FILE* ver = fopen("sdmc:/_nds/eventide/unofficial-bootstrap-sdk5", "w");
 					if(!ver) {
 						snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
 							"Download failed.");
@@ -1466,12 +1466,12 @@ void UpdateSDK1BootstrapUnofficial(void) {
 		pp2d_end_draw();
 	}
 	// Download first .nds file
-	remove("sdmc:/_nds/twloader/unofficial-bootstrap.nds");
+	remove("sdmc:/_nds/eventide/unofficial-bootstrap.nds");
 	int result = downloadFile(unofficial_BS_url.c_str(),"/_nds/unofficial-bootstrap.nds", MEDIA_SD_FILE);
 	
 	// Then, download version string
 	if(result == 0) {
-		remove("sdmc:/_nds/twloader/unofficial-bootstrap");
+		remove("sdmc:/_nds/eventide/unofficial-bootstrap");
 		downloadBootstrapVersion(false, false);
 		checkBootstrapVersion();
 		snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
@@ -1524,12 +1524,12 @@ void UpdateSDK5BootstrapUnofficial(void) {
 		pp2d_end_draw();
 	}
 	// Download first .nds file
-	remove("sdmc:/_nds/twloader/unofficial-bootstrap-sdk5.nds");
+	remove("sdmc:/_nds/eventide/unofficial-bootstrap-sdk5.nds");
 	int result = downloadFile(unofficial_SDK5BS_url.c_str(),"/_nds/unofficial-bootstrap-sdk5.nds", MEDIA_SD_FILE);
 	
 	// Then, download version string
 	if(result == 0) {
-		remove("sdmc:/_nds/twloader/unofficial-bootstrap-sdk5");
+		remove("sdmc:/_nds/eventide/unofficial-bootstrap-sdk5");
 		downloadBootstrapVersion(false, true);
 		checkBootstrapVersion();
 		snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
@@ -1591,12 +1591,12 @@ void UpdateSDK1BootstrapRelease(void) {
 		pp2d_end_draw();
 	}
 	// Download first .nds file
-	remove("sdmc:/_nds/twloader/release-bootstrap.nds");
+	remove("sdmc:/_nds/eventide/release-bootstrap.nds");
 	int result = downloadFile(release_BS_url.c_str(),"/_nds/release-bootstrap.nds", MEDIA_SD_FILE);
 
 	// Then, download version string
 	if(result == 0) {
-		remove("sdmc:/_nds/twloader/release-bootstrap");
+		remove("sdmc:/_nds/eventide/release-bootstrap");
 		downloadBootstrapVersion(true, false);
 		checkBootstrapVersion();
 		snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
@@ -1649,12 +1649,12 @@ void UpdateSDK5BootstrapRelease(void) {
 		pp2d_end_draw();
 	}
 	// Download first .nds file
-	remove("sdmc:/_nds/twloader/release-bootstrap-sdk5.nds");
+	remove("sdmc:/_nds/eventide/release-bootstrap-sdk5.nds");
 	int result = downloadFile(release_SDK5BS_url.c_str(),"/_nds/release-bootstrap-sdk5.nds", MEDIA_SD_FILE);
 
 	// Then, download version string
 	if(result == 0) {
-		remove("sdmc:/_nds/twloader/release-bootstrap-sdk5");
+		remove("sdmc:/_nds/eventide/release-bootstrap-sdk5");
 		downloadBootstrapVersion(true, true);
 		checkBootstrapVersion();
 		snprintf(init_textOnScreen, sizeof(init_textOnScreen), "%s",
@@ -1828,14 +1828,14 @@ static int downloadBoxArt_internal(const char *ba_TID, RomLocation location)
 	
 	switch(location){
 		case ROM_SD:
-			snprintf(path, sizeof(path), "/_nds/twloader/boxart/%.4s.png", ba_TID);
+			snprintf(path, sizeof(path), "/_nds/eventide/boxart/%.4s.png", ba_TID);
 			break;
 		case ROM_FLASHCARD:
-			snprintf(path, sizeof(path), "/_nds/twloader/boxart/flashcard/%.4s.png", ba_TID);
+			snprintf(path, sizeof(path), "/_nds/eventide/boxart/flashcard/%.4s.png", ba_TID);
 			break;
 		case ROM_SLOT_1:
 		default:
-			snprintf(path, sizeof(path), "/_nds/twloader/boxart/slot1/%.4s.png", ba_TID);
+			snprintf(path, sizeof(path), "/_nds/eventide/boxart/slot1/%.4s.png", ba_TID);
 			break;
 	}
 	snprintf(http_url, sizeof(http_url), "http://art.gametdb.com/ds/coverS/%s/%.4s.png",
@@ -1867,7 +1867,7 @@ int downloadBootstrapVersion(bool type, bool sdk5)
 		if (logEnabled)	LogFM("checkUpdate", "Error opening context.");
 		return -1;
 	}
-	if(R_FAILED(httpcAddRequestHeaderField(&context, "User-Agent", "TWLoader"))) {
+	if(R_FAILED(httpcAddRequestHeaderField(&context, "User-Agent", "Eventide"))) {
 		if (logEnabled)	LogFM("checkUpdate", "Error requesting header field.");
 		return -1;
 	}
@@ -1948,14 +1948,14 @@ int downloadBootstrapVersion(bool type, bool sdk5)
 		
 	if (sdk5){
 		if (type){
-			FILE* ver = fopen("sdmc:/_nds/twloader/release-bootstrap-sdk5", "w");
+			FILE* ver = fopen("sdmc:/_nds/eventide/release-bootstrap-sdk5", "w");
 			if(!ver) {
 				return res;
 			}
 			fputs(release_SDK5BS_ver.c_str(), ver);
 			fclose(ver);
 		}else{
-			FILE* ver = fopen("sdmc:/_nds/twloader/unofficial-bootstrap-sdk5", "w");
+			FILE* ver = fopen("sdmc:/_nds/eventide/unofficial-bootstrap-sdk5", "w");
 			if(!ver){
 				return res;
 			}
@@ -1964,14 +1964,14 @@ int downloadBootstrapVersion(bool type, bool sdk5)
 		}
 	} else {
 		if (type){
-			FILE* ver = fopen("sdmc:/_nds/twloader/release-bootstrap", "w");
+			FILE* ver = fopen("sdmc:/_nds/eventide/release-bootstrap", "w");
 			if(!ver) {
 				return res;
 			}
 			fputs(release_BS_ver.c_str(), ver);
 			fclose(ver);
 		}else{
-			FILE* ver = fopen("sdmc:/_nds/twloader/unofficial-bootstrap", "w");
+			FILE* ver = fopen("sdmc:/_nds/eventide/unofficial-bootstrap", "w");
 			if(!ver){
 				return res;
 			}
@@ -2001,7 +2001,7 @@ void checkBootstrapVersion(void){
 		buf[i] = '\0';
 	}
 	
-	FILE* VerFile = fopen("sdmc:/_nds/twloader/release-bootstrap", "r");
+	FILE* VerFile = fopen("sdmc:/_nds/eventide/release-bootstrap", "r");
 	if (!VerFile){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "release-bootstrap ver file not found.");
 		if(checkWifiStatus()){
@@ -2031,7 +2031,7 @@ void checkBootstrapVersion(void){
 	if(res == 0){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "Re-opening release bootstrap ver file.");
 		// Try to open again
-		VerFile = fopen("sdmc:/_nds/twloader/release-bootstrap", "r");
+		VerFile = fopen("sdmc:/_nds/eventide/release-bootstrap", "r");
 		if (!VerFile){
 				if (logEnabled) LogFM("download.checkBootstrapVersion()", "No release version file available #2.");
 				settings_releasebootstrapver = "No version available";
@@ -2055,7 +2055,7 @@ void checkBootstrapVersion(void){
 		buf[i] = '\0';
 	}
 	
-	VerFile = fopen("sdmc:/_nds/twloader/release-bootstrap-sdk5", "r");
+	VerFile = fopen("sdmc:/_nds/eventide/release-bootstrap-sdk5", "r");
 	if (!VerFile){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "release-bootstrap-sdk5 ver file not found.");
 		if(checkWifiStatus()){
@@ -2085,7 +2085,7 @@ void checkBootstrapVersion(void){
 	if(res == 0){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "Re-opening release-bootstrap-sdk5 ver file.");
 		// Try to open again
-		VerFile = fopen("sdmc:/_nds/twloader/release-bootstrap-sdk5", "r");
+		VerFile = fopen("sdmc:/_nds/eventide/release-bootstrap-sdk5", "r");
 		if (!VerFile){
 				if (logEnabled) LogFM("download.checkBootstrapVersion()", "No release version file available #2.");
 				settings_SDK5releasebootstrapver = "No version available";
@@ -2109,7 +2109,7 @@ void checkBootstrapVersion(void){
 		buf[i] = '\0';
 	}
 	
-	VerFile = fopen("sdmc:/_nds/twloader/unofficial-bootstrap", "r");
+	VerFile = fopen("sdmc:/_nds/eventide/unofficial-bootstrap", "r");
 	if (!VerFile){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "unofficial-bootstrap ver file not found.");
 		if(checkWifiStatus()){
@@ -2138,7 +2138,7 @@ void checkBootstrapVersion(void){
 	if(res == 0){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "Re-opening unofficial bootstrap ver file.");
 		// Try to open again
-		VerFile = fopen("sdmc:/_nds/twloader/unofficial-bootstrap", "r");
+		VerFile = fopen("sdmc:/_nds/eventide/unofficial-bootstrap", "r");
 		if (!VerFile){
 				if (logEnabled) LogFM("download.checkBootstrapVersion()", "No unofficial version file available #2.");		
 				settings_unofficialbootstrapver = "No version available";
@@ -2161,7 +2161,7 @@ void checkBootstrapVersion(void){
 		buf[i] = '\0';
 	}
 	
-	VerFile = fopen("sdmc:/_nds/twloader/unofficial-bootstrap-sdk5", "r");
+	VerFile = fopen("sdmc:/_nds/eventide/unofficial-bootstrap-sdk5", "r");
 	if (!VerFile){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "unofficial-bootstrap-sdk5 ver file not found.");
 		if(checkWifiStatus()){
@@ -2190,7 +2190,7 @@ void checkBootstrapVersion(void){
 	if(res == 0){
 		if (logEnabled) LogFM("download.checkBootstrapVersion()", "Re-opening unofficial-bootstrap-sdk5 ver file.");
 		// Try to open again
-		VerFile = fopen("sdmc:/_nds/twloader/unofficial-bootstrap-sdk5", "r");
+		VerFile = fopen("sdmc:/_nds/eventide/unofficial-bootstrap-sdk5", "r");
 		if (!VerFile){
 				if (logEnabled) LogFM("download.checkBootstrapVersion()", "No unofficial version file available #2.");		
 				settings_SDK5unofficialbootstrapver = "No version available";
@@ -2218,7 +2218,7 @@ void downloadSlot1BoxArt(const char* TID)
 	ba_TID[4] = 0;
 
 	char path[256];
-	snprintf(path, sizeof(path), "/_nds/twloader/boxart/slot1/%.4s.png", ba_TID);
+	snprintf(path, sizeof(path), "/_nds/eventide/boxart/slot1/%.4s.png", ba_TID);
 	if (!access(path, F_OK)) {
 		// File already exists.
 		return;
@@ -2280,13 +2280,13 @@ void downloadBoxArt(void)
 		boxart_all_tids.insert(tid);
 
 		// Does this boxart file already exist?
-		snprintf(path, sizeof(path), "sdmc:/_nds/twloader/boxart/%.4s.png", ba_TID);
+		snprintf(path, sizeof(path), "sdmc:/_nds/eventide/boxart/%.4s.png", ba_TID);
 		if (!access(path, F_OK)) {
 			// Boxart file exists.
 			continue;
 		}else{
 			// Maybe boxart exist with fullname instead of TID
-			snprintf(path, sizeof(path), "sdmc:/_nds/twloader/boxart/%s.png", tempfile);
+			snprintf(path, sizeof(path), "sdmc:/_nds/eventide/boxart/%s.png", tempfile);
 			if(!access(path, F_OK)){
 				// Boxart with fullname exist
 				continue;
@@ -2375,13 +2375,13 @@ void downloadBoxArt(void)
 		boxart_all_tids.insert(tid);
 
 		// Does this boxart file already exist?
-		snprintf(path, sizeof(path), "sdmc:/_nds/twloader/boxart/flashcard/%.4s.png", ba_TID.c_str());
+		snprintf(path, sizeof(path), "sdmc:/_nds/eventide/boxart/flashcard/%.4s.png", ba_TID.c_str());
 		if (!access(path, F_OK)) {
 			// Boxart file exists.
 			continue;
 		}else{
 			// Maybe boxart exist with fullname instead of TID
-			snprintf(path, sizeof(path), "sdmc:/_nds/twloader/boxart/flashcard/%s.png", tempfile);
+			snprintf(path, sizeof(path), "sdmc:/_nds/eventide/boxart/flashcard/%s.png", tempfile);
 			if(!access(path, F_OK)){
 				// Boxart with fullname exist
 				continue;
@@ -2457,7 +2457,7 @@ void downloadBoxArt(void)
 			boxart_all_tids.insert(tid);
 
 			// Does this boxart file already exist?
-			snprintf(path, sizeof(path), "sdmc:/_nds/twloader/boxart/slot1/%.4s.png", card_gameID);
+			snprintf(path, sizeof(path), "sdmc:/_nds/eventide/boxart/slot1/%.4s.png", card_gameID);
 			if (access(path, F_OK) != 0) {
 				// Boxart file does not exist. Download it.
 				boxart_dl_tids.push_back(tid);

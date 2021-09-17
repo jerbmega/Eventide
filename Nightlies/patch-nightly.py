@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------- #
-# This script has been created for TWLoader by Jolty95
+# This script has been created for Eventide by Jolty95
 # --------------------------------------------------------------------- #
 import json
 import requests
@@ -16,7 +16,7 @@ copyfile("Nightlies/romfs/logo.png", "gui/romfs/graphics/logo/logo.png")
 copyfile("Nightlies/romfs/logo_demo.png", "gui/romfs/graphics/logo/logo_demo.png")
 print("Patching Nightly hash...")
 commit_json = requests.get(
-    "https://raw.githubusercontent.com/Jolty95/TWLoader-update/master/beta/updatenightlies.json").json()
+    "https://raw.githubusercontent.com/Jolty95/Eventide-update/master/beta/updatenightlies.json").json()
 with open("updatenightlies.json", "w") as updatenightlies:
     repo = git.Repo(search_parent_directories=True)
     sha = repo.head.object.hexsha

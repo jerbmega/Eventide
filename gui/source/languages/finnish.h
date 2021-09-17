@@ -35,9 +35,9 @@ static const char *const lang_FI[STR_MAX] = {
 	"Näytä tiedostonimi",		     						// "Show filename"
 	"Peli laskuri",									// "Game counter"
 	"Mukautettu alakuva",								// "Custom bottom image"
-	"Auto-päivitä TWLoader",							// "Auto-update TWLoader"
-	"TWLoader tiedostotyyppi",							// "TWLoader filetype"
-	"Päivitä TWLoader",								// "Update TWLoader"
+	"Auto-päivitä Eventide",							// "Auto-update Eventide"
+	"Eventide tiedostotyyppi",							// "Eventide filetype"
+	"Päivitä Eventide",								// "Update Eventide"
 	"DS/DSi Alku Ruutu",								// "DS/DSi Boot Screen"
 	"H&S Viesti",									// "Health and Safety message"
 	"Näytä alku ruutu",								// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_FI[STR_MAX] = {
 	"Kieli jota käytetään käyttöliittymässä,",					// "The language to use for the UI,"
 	"mukaan lukien pelien kuvien teksissä.",					// "including game banner text."
 
-	"Teema jota käytetään TWLoaderissa. Paina",					// "The theme to use in TWLoader."
+	"Teema jota käytetään Eventideissa. Paina",					// "The theme to use in Eventide."
 	"START päästäksesi ali-teemavalikkoon.",					// "Press START for sub-themes."
 
 	"Ylätaustan väri,",								// "The color of the top background,"
@@ -110,7 +110,7 @@ static const char *const lang_FI[STR_MAX] = {
 	"DSi Valikko taustalla.",							// "for the DSi Menu theme."
 
 	"Auto-päivitä viimeisimpään",							// "Auto-update to the latest"
-	"TWLoader versioon käynnistyessä.",						// "TWLoader version at launch."
+	"Eventide versioon käynnistyessä.",						// "Eventide version at launch."
 
 	"Missä haluat käyttää",								// "Where do you want to see the"
 	"DS/DSi alku kuvaa?",								// "DS/DSi boot screen?"

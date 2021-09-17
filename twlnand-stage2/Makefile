@@ -128,7 +128,7 @@ dist:	all
 	@tar -cvjf hbmenu-$(VERSION).tar.bz2 Stage2 testfiles README.md COPYING -X exclude.lst
 	
 $(TARGET).nds:	$(TARGET).arm7 $(TARGET).arm9
-	ndstool	-c $(TARGET).nds -7 $(TARGET).arm7.elf -9 $(TARGET).arm9.elf -b icon.bmp "TWLoader;TWL-MODE app;Robz8" -g TWLD 01 "TWLOADER-TWL" -z 80040000 -u 00030005
+	ndstool	-c $(TARGET).nds -7 $(TARGET).arm7.elf -9 $(TARGET).arm9.elf -b icon.bmp "Eventide;TWL-MODE app;Robz8" -g TWLD 01 "EVENTIDE-TWL" -z 80040000 -u 00030005
 
 $(TARGET).arm7: arm7/$(TARGET).elf
 	cp arm7/$(TARGET).elf $(TARGET).arm7.elf

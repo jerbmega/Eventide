@@ -53,15 +53,15 @@ void initStuffThread() {
 	// make folders if they don't exist
 	mkdir("sdmc:/3ds", 0777);	// For DSP dump
 	mkdir("sdmc:/_nds", 0777);
-	mkdir("sdmc:/_nds/twloader", 0777);
-	mkdir("sdmc:/_nds/twloader/bnricons", 0777);
-	mkdir("sdmc:/_nds/twloader/bnricons/flashcard", 0777);
-	mkdir("sdmc:/_nds/twloader/boxart", 0777);
-	mkdir("sdmc:/_nds/twloader/boxart/flashcard", 0777);
-	mkdir("sdmc:/_nds/twloader/boxart/slot1", 0777);
-	mkdir("sdmc:/_nds/twloader/gamesettings", 0777);
-	mkdir("sdmc:/_nds/twloader/gamesettings/flashcard", 0777);
-	mkdir("sdmc:/_nds/twloader/loadflashcard", 0777);
+	mkdir("sdmc:/_nds/eventide", 0777);
+	mkdir("sdmc:/_nds/eventide/bnricons", 0777);
+	mkdir("sdmc:/_nds/eventide/bnricons/flashcard", 0777);
+	mkdir("sdmc:/_nds/eventide/boxart", 0777);
+	mkdir("sdmc:/_nds/eventide/boxart/flashcard", 0777);
+	mkdir("sdmc:/_nds/eventide/boxart/slot1", 0777);
+	mkdir("sdmc:/_nds/eventide/gamesettings", 0777);
+	mkdir("sdmc:/_nds/eventide/gamesettings/flashcard", 0777);
+	mkdir("sdmc:/_nds/eventide/loadflashcard", 0777);
 
 	/** Speed up New 3DS only. **/
 	bool isNew = 0;
@@ -112,10 +112,10 @@ void initStuffThread() {
 	pp2d_load_texture_png(batterytex, "romfs:/graphics/battery.png");
 
 	if(!isDemo) {
-		pp2d_load_texture_png(settingslogotex, "romfs:/graphics/settings/logo.png"); // TWLoader logo in settings screen.
+		pp2d_load_texture_png(settingslogotex, "romfs:/graphics/settings/logo.png"); // Eventide logo in settings screen.
 		pp2d_load_texture_png(settingslogotwltex, "romfs:/graphics/settings/logo_twl.png");
 	} else {
-		pp2d_load_texture_png(settingslogotex, "romfs:/graphics/settings/logo_demo.png"); // TWLoader logo in settings screen.
+		pp2d_load_texture_png(settingslogotex, "romfs:/graphics/settings/logo_demo.png"); // Eventide logo in settings screen.
 		pp2d_load_texture_png(settingslogotwltex, "romfs:/graphics/settings/logo_demo_twl.png");
 		pp2d_load_texture_png(settingslogodemotex, "romfs:/graphics/settings/logo_demo_demo.png");
 	}
@@ -127,7 +127,7 @@ void initStuffThread() {
 	pp2d_load_texture_png(smallsettingsicontex, "romfs:/graphics/wood/settings.png");
 	pp2d_load_texture_png(iconnulltex, "romfs:/graphics/icon_null.png"); // Slot-1 cart icon if no cart is present
 	pp2d_load_texture_png(homeicontex, "romfs:/graphics/homeicon.png"); // HOME icon
-	pp2d_load_texture_png(bottomlogotex, "romfs:/graphics/bottom_logo.png"); // TWLoader logo on bottom screen
+	pp2d_load_texture_png(bottomlogotex, "romfs:/graphics/bottom_logo.png"); // Eventide logo on bottom screen
 	pp2d_load_texture_png(scrollbartex, "romfs:/graphics/scrollbar.png"); // Scroll bar on bottom screen
 	pp2d_load_texture_png(buttonarrowtex, "romfs:/graphics/button_arrow.png"); // Arrow button for scroll bar
 	pp2d_load_texture_png(bipstex, "romfs:/graphics/bips.png"); // Little dots of scroll bar
@@ -148,8 +148,8 @@ void initStuffThread() {
 
 	if (logEnabled)	LogFM("Main.Textures", "Textures loaded.");
 
-	if( access( "sdmc:/_nds/twloader/music.wav", F_OK ) != -1 ) {
-		musicpath = "sdmc:/_nds/twloader/music.wav";
+	if( access( "sdmc:/_nds/eventide/music.wav", F_OK ) != -1 ) {
+		musicpath = "sdmc:/_nds/eventide/music.wav";
 		/* pp2d_begin_draw(GFX_BOTTOM, GFX_LEFT);
 		pp2d_draw_text(12, 16, 0.5f, 0.5f, WHITE, "Custom music file found!");
 		pp2d_end_draw(); */
@@ -206,7 +206,7 @@ void initStuffThread() {
 	"Checking WiFi status...\n"
 	"\n"
 	"If you see this for more than 25 seconds,\n"
-	"try rebooting, then after launching TWLoader,\n"
+	"try rebooting, then after launching Eventide,\n"
 	"hold  to skip downloading missing files.\n"
 	"\n"
 	"If the issue persists, reboot, then do the same,\n"
@@ -224,7 +224,7 @@ void initStuffThread() {
 		"Checking WiFi status...\n"
 		"\n"
 		"If you see this for more than 25 seconds,\n"
-		"try rebooting, then after launching TWLoader,\n"
+		"try rebooting, then after launching Eventide,\n"
 		"hold  to turn on quick start.");
 
 		// Download box art
@@ -266,12 +266,12 @@ void initStuffThread() {
 		"Checking WiFi status...\n"
 		"\n"
 		"If you see this for more than 25 seconds,\n"
-		"try rebooting, then after launching TWLoader,\n"
+		"try rebooting, then after launching Eventide,\n"
 		"hold  to turn on quick start.");
 
 		if (checkWifiStatus()) {
 			if (settings.ui.autoupdate_twldr && (checkUpdate() == 0) && !isDemo) {
-				DownloadTWLoaderCIAs();
+				DownloadEventideCIAs();
 			}
 
 			switch (settings.ui.autoupdate) {
@@ -343,9 +343,9 @@ void initStuff() {
 		LogFMA("Welcome to nightly channel!", "Version:", nightlyhash);
 		Log("********************************************************\n");	
 	} else {
-		/* Log file is dissabled by default. If _nds/twloader/log exist, we turn log file on, else, log is dissabled */
+		/* Log file is dissabled by default. If _nds/eventide/log exist, we turn log file on, else, log is dissabled */
 		struct stat logBuf;
-		logEnabled = stat("sdmc:/_nds/twloader/log", &logBuf) == 0;
+		logEnabled = stat("sdmc:/_nds/eventide/log", &logBuf) == 0;
 		/* Log configuration file end */
 		if (logEnabled)	createLog();
 	}		
@@ -369,9 +369,9 @@ void initStuff() {
 	float initBG_pos = 0.0;
 
 	if(isDemo)
-		pp2d_load_texture_png(twloaderlogotex, "romfs:/graphics/logo/logo_demo.png"); // TWLoader (3DSX demo version) logo on top screen
+		pp2d_load_texture_png(eventidelogotex, "romfs:/graphics/logo/logo_demo.png"); // Eventide (3DSX demo version) logo on top screen
 	else
-		pp2d_load_texture_png(twloaderlogotex, "romfs:/graphics/logo/logo.png"); // TWLoader logo on top screen
+		pp2d_load_texture_png(eventidelogotex, "romfs:/graphics/logo/logo.png"); // Eventide logo on top screen
 
 	// Dialog box textures.
 	pp2d_load_texture_png(dialogboxtex, "romfs:/graphics/dialogbox.png"); // Dialog box
@@ -415,7 +415,7 @@ void initStuff() {
 				pp2d_draw_texture(dsboottex, -48+initBG_pos+(h*48), -initBG_pos+(v*48));
 			}
 		}
-		pp2d_draw_texture(twloaderlogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
+		pp2d_draw_texture(eventidelogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
 		pp2d_draw_text(vertext_xPos, 222, 0.60, 0.60f, BLACK, settings_vertext);
 		pp2d_draw_on(GFX_BOTTOM, GFX_LEFT);
 		for (int h = 0; h < 9; h++) {
@@ -451,13 +451,13 @@ void initStuff() {
 		}
 	}
 
-	/*pp2d_load_texture_png(anniversarytex, "romfs:/graphics/anniversary/text.png"); // TWLoader logo on top screen
+	/*pp2d_load_texture_png(anniversarytex, "romfs:/graphics/anniversary/text.png"); // Eventide logo on top screen
 	if(showAnniversaryText) {
 		for(int i = 0; i < 64; i++) {
 			pp2d_begin_draw(GFX_TOP, GFX_LEFT);		
 			pp2d_draw_texture_part_blend(anniversarytex, 0, 40, 0, 0, 160, 40, RGBA8(255, 255, 255, aninumfadealpha));
 			pp2d_draw_texture_part(anniversarytex, 160, showAnniversaryTextYPos, 160, 0, 240, 40);
-			pp2d_draw_texture(twloaderlogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
+			pp2d_draw_texture(eventidelogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
 			pp2d_end_draw();
 			aninumfadealpha += 4;
 			if(aninumfadealpha > 255) aninumfadealpha = 255;
@@ -469,9 +469,9 @@ void initStuff() {
 	pp2d_begin_draw(GFX_TOP, GFX_LEFT);		
 	if(showAnniversaryText) {
 		pp2d_draw_texture(anniversarytex, 0, 40);
-		pp2d_draw_texture(twloaderlogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
+		pp2d_draw_texture(eventidelogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
 	} else {
-		pp2d_draw_texture(twloaderlogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
+		pp2d_draw_texture(eventidelogotex, 400/2 - 256/2, 240/2 - 128/2); // 400/2 - height/2, 240/2 - width/2
 	}
 	
 	aninumfadealpha = 255;

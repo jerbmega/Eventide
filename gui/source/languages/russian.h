@@ -35,9 +35,9 @@ static const char *const lang_RU[STR_MAX] = {
 	"Показать имя файла",										// "Show filename"
 	"Счётчик игр",												// "Game counter"
 	"Своё нижнее изобр.",										// "Custom bottom image"
-	"Автообнов. TWLoader",										// "Auto-update TWLoader"
-	"Файл TWLoader",											// "TWLoader filetype"
-	"Обновить TWLoader",										// "Update TWLoader"
+	"Автообнов. Eventide",										// "Auto-update Eventide"
+	"Файл Eventide",											// "Eventide filetype"
+	"Обновить Eventide",										// "Update Eventide"
 	"Экран DS/DSi",												// "DS/DSi Boot Screen"
 	"Экран Техники без-ти",										// "Health and Safety message"
 	"Старт. экран",												// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_RU[STR_MAX] = {
 	"Язый интерфейса,",											// "The language to use for the UI,"
 	"включая игровой баннер.",									// "including game banner text."
 
-	"Оформление для TWLoader.",									// "The theme to use in TWLoader."
+	"Оформление для Eventide.",									// "The theme to use in Eventide."
         "Нажмите START для выбора под-тем.",					// "Press START for sub-themes."
 
 	"Цвет заливки сверху,",										// "The color of the top background,"
@@ -110,7 +110,7 @@ static const char *const lang_RU[STR_MAX] = {
 	"игрового меню.",											// "for the game menu."
 
 	"Автомат-ая загрузка посл-го CIA",							// "Auto-download the CIA of the latest"
-	"TWLoader при запуске.",									// "TWLoader version at launch."
+	"Eventide при запуске.",									// "Eventide version at launch."
 
 	"Когда вы хотите видеть",									// "Where do you want to see the"
 	"экран запуска DS/DSi?",									// "DS/DSi boot screen?"

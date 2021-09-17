@@ -35,9 +35,9 @@ static const char *const lang_TR[STR_MAX] = {
 	"Dosya adını göster",											// "Show filename"
 	"Oyun  sayacı",												// "Game counter"
 	"Özel alt ekran görseli",										// "Custom bottom image"
-	"TWLoader'ı otomatik güncelleştir",										// "Auto-update TWLoader"
-	"TWLoader dosya tipi",										// "TWLoader filetype"
-	"TWLoader'ı Güncelleştir",											// "Update TWLoader"
+	"Eventide'ı otomatik güncelleştir",										// "Auto-update Eventide"
+	"Eventide dosya tipi",										// "Eventide filetype"
+	"Eventide'ı Güncelleştir",											// "Update Eventide"
 	"DS/DSi Başlangıç Ekranı",										// "DS/DSi Boot Screen"
 	"Sağlık ve Güvenlik mesajı",								// "Health and Safety message"
 	"Başlangıç Ekranını Göster",											// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_TR[STR_MAX] = {
 	"Arayüzde kullanılacak dil,",							// "The language to use for the UI,"
 	"Bu dil oyun açıklamasında da kullanılır.",								// "including game banner text."
 
-	"TWLoader'da kullanılacak tema.",							// "The theme to use in TWLoader."
+	"Eventide'da kullanılacak tema.",							// "The theme to use in Eventide."
 	"Yan temalar için BAŞLAT tuşuna basın.",								// "Press START for sub-themes."
 
 	"Üst ekran arkaplan,",							// "The color of the top background,"
@@ -109,8 +109,8 @@ static const char *const lang_TR[STR_MAX] = {
 	"DSi Menü teması için",						// "Loads a custom bottom screen image"
 	"özel bir alt ekran görseli yükler.",									// "for the DSi Menu theme."
 
-	"Açılışta son TWLoader versiyonuna",								// "Auto-update to the latest"
-	"otomatik olarak güncelle",								// "TWLoader version at launch."
+	"Açılışta son Eventide versiyonuna",								// "Auto-update to the latest"
+	"otomatik olarak güncelle",								// "Eventide version at launch."
 
 	"DS/DSi başlangıç ekranını",								// "Where do you want to see the"
 	"Nerede görmek istersiniz?",										// "DS/DSi boot screen?"

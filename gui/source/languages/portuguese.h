@@ -35,9 +35,9 @@ static const char *const lang_PT[STR_MAX] = {
 	"Mostrar nome do ficheiro",									// "Show filename"
 	"Contador de jogos",										// "Game counter"
 	"Imagem da parte inferior personalizada",					// "Custom bottom image"
-	"Actualização automática: TWLoader",						// "Auto-update TWLoader"
-	"TWLoader filetype",										// "TWLoader filetype"
-	"Actualizar TWLoader",										// "Update TWLoader"
+	"Actualização automática: Eventide",						// "Auto-update Eventide"
+	"Eventide filetype",										// "Eventide filetype"
+	"Actualizar Eventide",										// "Update Eventide"
 	"Ecrã de Boot DS/DSi",										// "DS/DSi Boot Screen"
 	"Mensagem de saúde e segurança",							// "Health and Safety message"
 	"Show Boot Screen",											// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_PT[STR_MAX] = {
 	"A língua a utilisar para a interface,",					// "The language to use for the UI,"
 	"incluindo o texto da imagem do jogo.",						// "including game banner text."
 
-	"O tema a utilisar no TWLoader.",							// "The theme to use in TWLoader."
+	"O tema a utilisar no Eventide.",							// "The theme to use in Eventide."
 	"Carregue em START para sub-temas.",						// "Press START for sub-themes."
 
 	"A cor de fundo do topo,",									// "The color of the top background,"
@@ -110,7 +110,7 @@ static const char *const lang_PT[STR_MAX] = {
 	"a parte inferior do menu do DSi.",							// "for the DSi Menu theme."
 
 	"Download automático da versão mais recente",				// "Auto-download the CIA of the latest"
-	"do TWLoader durante o lançamento.",						// "TWLoader version at launch."
+	"do Eventide durante o lançamento.",						// "Eventide version at launch."
 
 	"Where do you want to see the",								// "Where do you want to see the"
 	"DS/DSi boot screen?",										// "DS/DSi boot screen?"

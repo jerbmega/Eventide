@@ -1,12 +1,12 @@
 # Contributing Guide
 
-Contributions are always welcome to TWLoader! If you have something new to share with us, please, do it.
+Contributions are always welcome to Eventide! If you have something new to share with us, please, do it.
 
 ## Issues Guidelines
 
 Before you submit an issue, check that it meets these guidelines:
 
-- specify the version of TWLoader and TWLoader NAND Side you are using
+- specify the version of Eventide and Eventide NAND Side you are using
 - specify what console are you using and your entrypoint
 - specify the CFW version you're using
 - specify if you're using an emunand

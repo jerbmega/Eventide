@@ -35,9 +35,9 @@ static const char *const lang_IT[STR_MAX] = {
 	"Visualizza nome file",                          	// "Show filename"
 	"Contatore giochi",                                    		// "Game counter"
 	"Sfondo inf. personalizz.",                    		// "Custom bottom image"
-	"Auto-aggiorna TWLoader",             	       	// "Auto-update TWLoader"
-	"Tipo file TWLoader",										// "TWLoader filetype"
-	"Aggiorna TWLoader",										// "Update TWLoader"
+	"Auto-aggiorna Eventide",             	       	// "Auto-update Eventide"
+	"Tipo file Eventide",										// "Eventide filetype"
+	"Aggiorna Eventide",										// "Update Eventide"
 	"Schermata avvio DS/DSi",                                // "DS/DSi Boot Screen"
 	"Messaggio S&S",                             // "Health and Safety message"
 	"Mostra scherm. avvio",											// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_IT[STR_MAX] = {
 	"La lingua usata per la UI,",                               // "The language to use for the UI,"
 	"incluso il testo dei banner dei giochi.",                  // "including game banner text."
 
-	"Il tema usato con il TWLoader.",                           // "The theme to use in TWLoader."
+	"Il tema usato con il Eventide.",                           // "The theme to use in Eventide."
 	"Premi START per i sotto-temi.",                            // "Press START for sub-themes."
 
 	"Il colore dello sfondo superiore, del bordo",              // "The color of the top background,"
@@ -110,7 +110,7 @@ static const char *const lang_IT[STR_MAX] = {
 	"menu del DSi.",                                 	        // "for the DSi Menu theme."
 
 	"Scarica automaticamente l'ultima",                         // "Auto-download the CIA of the latest"
-	"versione di TWLoader all'avvio.",                    // "TWLoader version at launch."
+	"versione di Eventide all'avvio.",                    // "Eventide version at launch."
 
 	"Dove vuoi vedere la schermata di",								// "Where do you want to see the"
 	"avvio DS/DSi?",										// "DS/DSi boot screen?"

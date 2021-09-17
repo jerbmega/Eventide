@@ -1,6 +1,6 @@
 // SMDH structs from FBI 2.4.7's util.h.
-#ifndef TWLOADER_SMDH_H
-#define TWLOADER_SMDH_H
+#ifndef EVENTIDE_SMDH_H
+#define EVENTIDE_SMDH_H
 
 typedef struct {
 	u16 shortDescription[0x40];
@@ -27,4 +27,4 @@ typedef struct {
 	u8 largeIcon[0x1200];
 } SMDH;
 
-#endif /* TWLOADER_SMDH_H */
+#endif /* EVENTIDE_SMDH_H */

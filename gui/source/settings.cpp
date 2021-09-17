@@ -1,4 +1,4 @@
-// TWLoader: Settings screen.
+// Eventide: Settings screen.
 #include "settings.h"
 #include "main.h"
 #include "date.h"
@@ -37,7 +37,7 @@ const char *FirstTime_msg;
 static int FirstTime_selectedmsg = 0;
 
 const char* srldrsettingsinipath = "sdmc:/_nds/srloader/settings.ini";
-static CIniFile settingsini("sdmc:/_nds/twloader/settings.ini");
+static CIniFile settingsini("sdmc:/_nds/eventide/settings.ini");
 static CIniFile srldrsettingsini(srldrsettingsinipath);
 
 static bool settings_tex_loaded = false;
@@ -283,7 +283,7 @@ void settingsDrawTopScreen(void)
 				pp2d_draw_rectangle(offset3D[topfb].boxart+120, 72, 160, 120, WHITE);
 			}
 		} else if (subscreenmode == SUBSCREEN_MODE_CHANGE_ROM_PATH) {
-			pp2d_draw_text(offset3D[topfb].disabled+32, 120, 0.55, 0.55, WHITE, "TWLoader will auto-restart if location is changed.");
+			pp2d_draw_text(offset3D[topfb].disabled+32, 120, 0.55, 0.55, WHITE, "Eventide will auto-restart if location is changed.");
 		} else {
 			if(showAnniversaryText) pp2d_draw_texture(anniversarytex, 0, 40);
 
@@ -675,9 +675,9 @@ void settingsDrawBottomScreen(void)
 		};
 		const wchar_t *button_titles[] = {
 			TR(STR_SETTINGS_CUSTOM_BOTTOM),
-			TR(STR_SETTINGS_AUTOUPDATE_TWLOADER),
-			TR(STR_SETTINGS_TWLOADER_FILETYPE),
-			TR(STR_SETTINGS_UPDATE_TWLOADER),
+			TR(STR_SETTINGS_AUTOUPDATE_EVENTIDE),
+			TR(STR_SETTINGS_EVENTIDE_FILETYPE),
+			TR(STR_SETTINGS_UPDATE_EVENTIDE),
 			TR(STR_SETTINGS_DS_DSi_BOOT_SCREEN),
 			TR(STR_SETTINGS_DS_DSi_SAFETY_MESSAGE),
 		};
@@ -729,15 +729,15 @@ void settingsDrawBottomScreen(void)
 			pp2d_draw_wtext(8, 198, 0.60, 0.60f, WHITE, TR(STR_SETTINGS_DESCRIPTION_CUSTOM_BOTTOM_2));
 		}
 		if (cursor_pos[1] == 1) {
-			pp2d_draw_wtext(8, 184, 0.60, 0.60f, WHITE, TR(STR_SETTINGS_DESCRIPTION_AUTOUPDATE_TWLOADER_1));
-			pp2d_draw_wtext(8, 198, 0.60, 0.60f, WHITE, TR(STR_SETTINGS_DESCRIPTION_AUTOUPDATE_TWLOADER_2));
+			pp2d_draw_wtext(8, 184, 0.60, 0.60f, WHITE, TR(STR_SETTINGS_DESCRIPTION_AUTOUPDATE_EVENTIDE_1));
+			pp2d_draw_wtext(8, 198, 0.60, 0.60f, WHITE, TR(STR_SETTINGS_DESCRIPTION_AUTOUPDATE_EVENTIDE_2));
 		}
 		if (cursor_pos[1] == 2) {
-			pp2d_draw_text(8, 184, 0.60, 0.60f, WHITE, "Select the filetype of TWLoader");
+			pp2d_draw_text(8, 184, 0.60, 0.60f, WHITE, "Select the filetype of Eventide");
 			pp2d_draw_text(8, 198, 0.60, 0.60f, WHITE, "you're using.");
 		}
 		if (cursor_pos[1] == 3) {
-			pp2d_draw_text(8, 184, 0.60, 0.60f, WHITE, "Press  to update TWLoader.");
+			pp2d_draw_text(8, 184, 0.60, 0.60f, WHITE, "Press  to update Eventide.");
 		}
 		if (cursor_pos[1] == 4) {
 			pp2d_draw_wtext(8, 184, 0.60, 0.60f, WHITE, TR(STR_SETTINGS_DESCRIPTION_DS_DSi_BOOT_SCREEN_1));
@@ -1235,21 +1235,21 @@ void settingsDrawBottomScreen(void)
 				"TWLNAND-side (part 1) has not been installed.\n"
 				"Please install the TWLNAND-side (part 1) CIA:\n"
 				"\n"
-				"sd:/_nds/twloader/cias/TWLoader - TWLNAND side.cia";
+				"sd:/_nds/eventide/cias/Eventide - TWLNAND side.cia";
 		} else if (TWLNANDnotfound_msg == 1) {
 			twlnand_msg =
 				"TWLNAND-side (part 1.1) has not been installed.\n"
 				"Please install the TWLNAND-side (part 1.1) CIA:\n"
 				"\n"
-				"sd:/_nds/twloader/cias/\n"
-				"TWLoader - TWLNAND side (part 1.1).cia";
+				"sd:/_nds/eventide/cias/\n"
+				"Eventide - TWLNAND side (part 1.1).cia";
 		} else if (TWLNANDnotfound_msg == 2) {
 			twlnand_msg =
 				"TWLNAND-side (part 2) has not been installed.\n"
 				"Please install the TWLNAND-side (part 2) CIA:\n"
 				"\n"
-				"sd:/_nds/twloader/cias/\n"
-				"TWLoader - TWLNAND side (part 2).cia";
+				"sd:/_nds/eventide/cias/\n"
+				"Eventide - TWLNAND side (part 2).cia";
 		}
 		pp2d_draw_text(16, 40, 0.4, 0.4, WHITE, twlnand_msg);
 	} else if (subscreenmode == SUBSCREEN_MODE_FIRST_TIME) {
@@ -1263,11 +1263,11 @@ void settingsDrawBottomScreen(void)
 		if(FirstTime_selectedmsg != 0) pp2d_draw_text(8, 196, 0.50, 0.50, WHITE, ": Previous");
 		if(FirstTime_selectedmsg != 5) pp2d_draw_text(248, 196, 0.50, 0.50, WHITE, ": Next");
 
-		title = L"Welcome to TWLoader!";
+		title = L"Welcome to Eventide!";
 
 		if(FirstTime_selectedmsg == 0) {
 			FirstTime_msg =
-				"TWLoader is a CTR-mode GUI that looks and feels\n"
+				"Eventide is a CTR-mode GUI that looks and feels\n"
 				"like the Nintendo DSi Menu.\n"
 				"(The theme can be changed to R4 or akmenu/Wood.)";
 		} else if(FirstTime_selectedmsg == 1) {
@@ -1279,7 +1279,7 @@ void settingsDrawBottomScreen(void)
 				"It can also serve as a replacement for flashcard menus.";
 		} else if(FirstTime_selectedmsg == 2) {
 			FirstTime_msg =
-				"TWLoader also includes an enhanced hi-res\n"
+				"Eventide also includes an enhanced hi-res\n"
 				"3D-depth version of the DS/DSi boot screen.";
 		} else if(FirstTime_selectedmsg == 3) {
 			FirstTime_msg =
@@ -1303,7 +1303,7 @@ void settingsDrawBottomScreen(void)
 				"after completing the guide\n";
 		} else if(FirstTime_selectedmsg == 5) {
 			FirstTime_msg =
-				"Enjoy using TWLoader to launch your games\n"
+				"Enjoy using Eventide to launch your games\n"
 				"from the SD card or a flashcard!\n"
 				"\n"
 				"(Please note that some games are not compatible\n"
@@ -1619,7 +1619,7 @@ bool settingsMoveCursor(u32 hDown)
 					settings.ui.custombot = !settings.ui.custombot;
 					LoadBottomImage();
 					break;
-				case 1:	// Enable or disable autoupdate TWLoader
+				case 1:	// Enable or disable autoupdate Eventide
 					settings.ui.autoupdate_twldr = !settings.ui.autoupdate_twldr;
 					break;
 				case 2:
@@ -1645,7 +1645,7 @@ bool settingsMoveCursor(u32 hDown)
 								sfx_select->stop();	// Prevent freezing
 								sfx_select->play();
 							}
-							DownloadTWLoaderCIAs();
+							DownloadEventideCIAs();
 						}
 					} else {
 						// Wi-Fi is not connected.
@@ -2038,8 +2038,8 @@ void LoadBottomImage() {
 	bottomloc = "romfs:/graphics/bottom.png";
 
 	if (settings.ui.custombot == 1) {
-		if( access( "sdmc:/_nds/twloader/bottom.png", F_OK ) != -1 ) {
-			bottomloc = "sdmc:/_nds/twloader/bottom.png";
+		if( access( "sdmc:/_nds/eventide/bottom.png", F_OK ) != -1 ) {
+			bottomloc = "sdmc:/_nds/eventide/bottom.png";
 			if (logEnabled)	LogFM("LoadBottomImage()", "Using custom bottom image. Method load successfully.");
 		} else {
 			bottomloc = "romfs:/graphics/bottom.png";
@@ -2197,7 +2197,7 @@ void SaveSettings(void) {
 	settingsini.SetInt("TWL-MODE", "FORWARDER", settings.twl.forwarder);
 	settingsini.SetInt("TWL-MODE", "FLASHCARD", settings.twl.flashcard);
 	settingsini.SetInt("TWL-MODE", "GBARUNNER", gbarunnervalue);
-	settingsini.SaveIniFile("sdmc:/_nds/twloader/settings.ini");
+	settingsini.SaveIniFile("sdmc:/_nds/eventide/settings.ini");
 
 	if(srldrsettingsFound) {
 		// Save some settings to SRLoader as well.

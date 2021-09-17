@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------- #
 # This is an script originally written by Octonezd.
-# This script has been editted to make it work for TWLoader by Jolty95
+# This script has been editted to make it work for Eventide by Jolty95
 # --------------------------------------------------------------------- #
 try:
     from base64 import b64encode
@@ -9,13 +9,13 @@ try:
     from subprocess import check_output
     import requests
     itemstopush = {
-        "Nightly/TWLoader.zip": "TWLoader.zip",
-        "Nightly/TWLoader.cia": "TWLoader-beta.cia",
+        "Nightly/Eventide.zip": "Eventide.zip",
+        "Nightly/Eventide.cia": "Eventide-beta.cia",
 		"updatenightlies.json": "updatenightlies.json"
     }
     version = str(
         check_output('git log -n 1 --pretty=format:"%h"', shell=True), 'utf-8')
-    github = "https://api.github.com/repos/Jolty95/TWLoader-update/"
+    github = "https://api.github.com/repos/Jolty95/Eventide-update/"
     branch = "master"
     folder = "beta"
     treesha = ""

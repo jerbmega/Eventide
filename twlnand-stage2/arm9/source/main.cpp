@@ -127,21 +127,21 @@ int main(int argc, char **argv) {
 
 	bool consoleOn = false;
 
-	/* Log file is dissabled by default. If _nds/twloader/log exist, we turn log file on, else, log is dissabled */
+	/* Log file is dissabled by default. If _nds/eventide/log exist, we turn log file on, else, log is dissabled */
 	struct stat logBuf;
-	logEnabled = stat("sd:/_nds/twloader/log", &logBuf) == 0;
+	logEnabled = stat("sd:/_nds/eventide/log", &logBuf) == 0;
 	/* Log configuration file end */
 	
 	/* scanKeys();
 	int pressed = keysDown(); */
 
 	if (fatInitDefault()) {
-		CIniFile twloaderini( "sd:/_nds/twloader/settings.ini" );
+		CIniFile eventideini( "sd:/_nds/eventide/settings.ini" );
 		CIniFile bootstrapini( "sd:/_nds/nds-bootstrap.ini" );
 		
 		// Didn't seem to work, aside from the language of the H&S screen changing.
-		// if(twloaderini.GetInt("TWL-MODE","USE_SYSLANG",0) == 0) {
-		// 	PersonalData->language = twloaderini.GetInt("TWL-MODE", "LANGUAGE", 0);
+		// if(eventideini.GetInt("TWL-MODE","USE_SYSLANG",0) == 0) {
+		// 	PersonalData->language = eventideini.GetInt("TWL-MODE", "LANGUAGE", 0);
 		// }
 
 		char *p = (char*)PersonalData->name;
@@ -156,22 +156,22 @@ int main(int argc, char **argv) {
 
 		if (logEnabled)	LogFMA("TWL.Main", "Got username", p);
 		
-		twloaderini.SetString("FRONTEND","NAME", p);
-		twloaderini.SaveIniFile( "sd:/_nds/twloader/settings.ini" );
+		eventideini.SetString("FRONTEND","NAME", p);
+		eventideini.SaveIniFile( "sd:/_nds/eventide/settings.ini" );
 		if (logEnabled)	LogFMA("TWL.Main", "Saved username to GUI", p);
 
-		gbarunnervalue = twloaderini.GetInt( "TWL-MODE", "GBARUNNER", 0);
-		romtype = twloaderini.GetInt( "TWL-MODE", "ROM_TYPE", 0);
-		gbromfolder = twloaderini.GetString("FRONTEND", "GBROM_FOLDER", "roms/gb");
-		nesromfolder = twloaderini.GetString("FRONTEND", "NESROM_FOLDER", "roms/nes");
+		gbarunnervalue = eventideini.GetInt( "TWL-MODE", "GBARUNNER", 0);
+		romtype = eventideini.GetInt( "TWL-MODE", "ROM_TYPE", 0);
+		gbromfolder = eventideini.GetString("FRONTEND", "GBROM_FOLDER", "roms/gb");
+		nesromfolder = eventideini.GetString("FRONTEND", "NESROM_FOLDER", "roms/nes");
 
-		gamesettingsPath = twloaderini.GetString( "TWL-MODE", "GAMESETTINGS_PATH", "");
+		gamesettingsPath = eventideini.GetString( "TWL-MODE", "GAMESETTINGS_PATH", "");
 
 		if(romtype==0 || gbarunnervalue==1) {
 			if(!access(gamesettingsPath.c_str(), F_OK)) {
 				CIniFile gamesettingsini( gamesettingsPath );
 				if(gamesettingsini.GetInt("GAME-SETTINGS","TWL_CLOCK",0) == -1) {
-					if(twloaderini.GetInt("TWL-MODE","TWL_CLOCK",0) == 0) { TWLCLK = false; }
+					if(eventideini.GetInt("TWL-MODE","TWL_CLOCK",0) == 0) { TWLCLK = false; }
 				} else {
 					if(gamesettingsini.GetInt("GAME-SETTINGS","TWL_CLOCK",0) == 0) {
 						TWLCLK = false;
@@ -190,24 +190,24 @@ int main(int argc, char **argv) {
 				}
 				bootstrapini.SaveIniFile( "sd:/_nds/nds-bootstrap.ini" );
 			} else {
-				TWLCLK = twloaderini.GetInt("TWL-MODE","TWL_CLOCK", 0);
+				TWLCLK = eventideini.GetInt("TWL-MODE","TWL_CLOCK", 0);
 				bootstrapini.SetInt("NDS-BOOTSTRAP","USE_ARM7_DONOR", 1);
 				bootstrapini.SaveIniFile( "sd:/_nds/nds-bootstrap.ini" );
 			}
 		} else {
-			homebrew_arg = twloaderini.GetString( "TWL-MODE", "HOMEBREW_ARG", "");
+			homebrew_arg = eventideini.GetString( "TWL-MODE", "HOMEBREW_ARG", "");
 
-			TWLCLK = twloaderini.GetInt("TWL-MODE","TWL_CLOCK", 0);
+			TWLCLK = eventideini.GetInt("TWL-MODE","TWL_CLOCK", 0);
 		}
 		
-		if(twloaderini.GetInt("TWL-MODE","DEBUG",0) != -1) {
+		if(eventideini.GetInt("TWL-MODE","DEBUG",0) != -1) {
 			consoleDemoInit();
 			consoleOn = true;
 		}
 		if(romtype==0 || gbarunnervalue==1) {
 			if(TWLCLK) {
 				if (logEnabled)	LogFM("TWL.Main", "ARM9 CPU Speed set to 133mhz(TWL)");
-				if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1) {
+				if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1) {
 					printf("TWL_CLOCK ON\n");		
 				}
 			} else {
@@ -217,18 +217,18 @@ int main(int argc, char **argv) {
 			}
 		}
 		
-		SOUND_FREQ = twloaderini.GetInt("TWL-MODE","SOUND_FREQ",0);
+		SOUND_FREQ = eventideini.GetInt("TWL-MODE","SOUND_FREQ",0);
 		if(SOUND_FREQ) {
 			fifoSendValue32(FIFO_MAXMOD, 1);
 			if (logEnabled)	LogFM("TWL.Main", "Sound/Microphone frequency set to 47.61 kHz");
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1) {
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1) {
 				printf("SOUND_FREQ 47.61 kHz\n");		
 			}
 		} else {
 			if (logEnabled)	LogFM("TWL.Main", "Sound/Microphone frequency set to 32.73 kHz");
 		}
 
-		if(twloaderini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 1) {
+		if(eventideini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 1) {
 			if(REG_SCFG_MC == 0x11) { 
 				if (consoleOn == false) {
 					consoleDemoInit(); }
@@ -242,7 +242,7 @@ int main(int argc, char **argv) {
 			// Tell Arm7 to apply changes.
 			fifoSendValue32(FIFO_USER_07, 1);
 
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1)
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1)
 				doPause();
 
 			for (int i = 0; i < 20; i++) { swiWaitForVBlank(); }
@@ -254,8 +254,8 @@ int main(int argc, char **argv) {
 				char gbROMpath[256];
 				snprintf (gbROMpath, sizeof(gbROMpath), "/%s/%s", gbromfolder.c_str(), homebrew_arg.c_str());
 				argarray.push_back(gbROMpath);
-				argarray.at(0) = "sd:/_nds/twloader/emulators/gameyob.nds";
-				int err = runNdsFile ("sd:/_nds/twloader/emulators/gameyob.nds", argarray.size(), (const char **)&argarray[0]);	// Pass ROM to GameYob as argument
+				argarray.at(0) = "sd:/_nds/eventide/emulators/gameyob.nds";
+				int err = runNdsFile ("sd:/_nds/eventide/emulators/gameyob.nds", argarray.size(), (const char **)&argarray[0]);	// Pass ROM to GameYob as argument
 				if (consoleOn == false) {
 					consoleDemoInit(); }
 				iprintf("Start failed. Error %i\n", err);
@@ -265,8 +265,8 @@ int main(int argc, char **argv) {
 				char nesROMpath[256];
 				snprintf (nesROMpath, sizeof(nesROMpath), "/%s/%s", nesromfolder.c_str(), homebrew_arg.c_str());
 				argarray.push_back(nesROMpath);
-				argarray.at(0) = "sd:/_nds/twloader/emulators/nestwl.nds";
-				int err = runNdsFile ("sd:/_nds/twloader/emulators/nestwl.nds", argarray.size(), (const char **)&argarray[0]);	// Pass ROM to nesDS as argument
+				argarray.at(0) = "sd:/_nds/eventide/emulators/nestwl.nds";
+				int err = runNdsFile ("sd:/_nds/eventide/emulators/nestwl.nds", argarray.size(), (const char **)&argarray[0]);	// Pass ROM to nesDS as argument
 				if (consoleOn == false) {
 					consoleDemoInit(); }
 				iprintf("Start failed. Error %i\n", err);
@@ -283,48 +283,48 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		if(twloaderini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 1) {
+		if(eventideini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 1) {
 			REG_SCFG_EXT = 0x83000000; // NAND/SD Access
-			if(twloaderini.GetInt("TWL-MODE","FORWARDER",0) == 1) {
-				if(twloaderini.GetInt("TWL-MODE","FLASHCARD",0) == 0) {
+			if(eventideini.GetInt("TWL-MODE","FORWARDER",0) == 1) {
+				if(eventideini.GetInt("TWL-MODE","FLASHCARD",0) == 0) {
 					fifoSendValue32(FIFO_USER_05, 1);
-					if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1)
+					if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1)
 						printf("ARM7 REG_SCFG_ROM = 0x703\n");
 				}
 			}
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1)
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1)
 				printf("Switched to NTR mode\n");		
 		}
 		
 		// Tell Arm7 to apply changes.
 		fifoSendValue32(FIFO_USER_07, 1);
 
-		if(twloaderini.GetInt("TWL-MODE","DEBUG",0) == 1)
+		if(eventideini.GetInt("TWL-MODE","DEBUG",0) == 1)
 			doPause();
 
 		for (int i = 0; i < 20; i++) { swiWaitForVBlank(); }
 				
-		if(twloaderini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 1) {
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) != -1) {
+		if(eventideini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 1) {
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) != -1) {
 				printf("Now booting Slot-1 card\n");					
 				if (logEnabled)	LogFM("TWL.Main", "Now booting Slot-1 card");
 			}
 		}
-		if(twloaderini.GetInt("TWL-MODE","FORWARDER",0) == 1) {
-			if(twloaderini.GetInt("TWL-MODE","FLASHCARD",0) == 0) {
+		if(eventideini.GetInt("TWL-MODE","FORWARDER",0) == 1) {
+			if(eventideini.GetInt("TWL-MODE","FLASHCARD",0) == 0) {
 				runFile("sd:/_nds/loadcard_dstt.nds");
-			} else if(twloaderini.GetInt("TWL-MODE","FLASHCARD",0) == 1) {
-				runFile("sd:/_nds/twloader/loadflashcard/r4.nds");
-			} else if(twloaderini.GetInt("TWL-MODE","FLASHCARD",0) == 4) {
-				runFile("sd:/_nds/twloader/loadflashcard/ace_rpg.nds");
+			} else if(eventideini.GetInt("TWL-MODE","FLASHCARD",0) == 1) {
+				runFile("sd:/_nds/eventide/loadflashcard/r4.nds");
+			} else if(eventideini.GetInt("TWL-MODE","FLASHCARD",0) == 4) {
+				runFile("sd:/_nds/eventide/loadflashcard/ace_rpg.nds");
 			}
 		}
 		
 		for (int i = 0; i < 20; i++) { swiWaitForVBlank(); }
 
-		if(twloaderini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 0) {
+		if(eventideini.GetInt("TWL-MODE","LAUNCH_SLOT1",0) == 0) {
 			if (logEnabled)	LogFM("TWL.Main", "Now booting bootstrap");
-			if(twloaderini.GetInt("TWL-MODE","DEBUG",0) != -1) {
+			if(eventideini.GetInt("TWL-MODE","DEBUG",0) != -1) {
 				printf("Now booting bootstrap\n");					
 			}
 		}

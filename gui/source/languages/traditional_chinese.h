@@ -35,9 +35,9 @@ static const char *const lang_TRCH[STR_MAX] = {
 	"顯示檔案名稱",													// "Show filename"
 	"遊戲計數器",													// "Game counter"
 	"自訂下層圖案",													// "Custom bottom image"
-	"自動更新到最新的 TWLoader",										// "Auto-update TWLoader"
-	"TWLoader filetype",										// "TWLoader filetype"
-	"更新 TWLoader",												// "Update TWLoader"
+	"自動更新到最新的 Eventide",										// "Auto-update Eventide"
+	"Eventide filetype",										// "Eventide filetype"
+	"更新 Eventide",												// "Update Eventide"
 	"DS/DSi 啟動畫面",												// "DS/DSi Boot Screen"
 	"健康與安全信息",												// "Health and Safety message"
 	"Show 啟動畫面",												// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_TRCH[STR_MAX] = {
 	"介面上所使用的語言,",											// "The language to use for the UI,"
 	"包含遊戲橫幅上的文字.",											// "including game banner text."
 
-	"TWLoader所使用的主題.",										// "The theme to use in TWLoader."
+	"Eventide所使用的主題.",										// "The theme to use in Eventide."
 	"點擊 START 來使用副主題.",											// "Press START for sub-themes."
 
 	"上面背景的顏色,",												// "The color of the top background,"
@@ -110,7 +110,7 @@ static const char *const lang_TRCH[STR_MAX] = {
 	"給遊戲選單使用.",												// "for the game menu."
 
 	"啟動時自動下載最新版本的",										// "Auto-download the CIA of the latest"
-	"TWLoader CIA.",											// "TWLoader version at launch."
+	"Eventide CIA.",											// "Eventide version at launch."
 
 	"Where do you want to see the",								// "Where do you want to see the"
 	"DS/DSi boot screen?",										// "DS/DSi boot screen?"

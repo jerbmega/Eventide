@@ -35,9 +35,9 @@ static const char *const lang_DE[STR_MAX] = {
 	"Dateiname anzeigen",							// "Show filename"
 	"Spielzähler",								// "Game counter"
 	"Eigener Hintergrund",							// "Custom bottom image"
-	"TWLoader Update",							// "Auto-update TWLoader"
-	"TWLoader Dateityp",							// "TWLoader filetype"
-	"TWLoader Sofortupdate",						// "Update TWLoader"
+	"Eventide Update",							// "Auto-update Eventide"
+	"Eventide Dateityp",							// "Eventide filetype"
+	"Eventide Sofortupdate",						// "Update Eventide"
 	"DS/DSi Startanimation",						// "DS/DSi Boot Screen"
 	"Gesundheit & Sicherheit",						// "Health and Safety message"
 	"Startbildschirm",							// "Show Boot Screen"
@@ -91,7 +91,7 @@ static const char *const lang_DE[STR_MAX] = {
 	"Die Sprache der Benutzeroberfläche",					// "The language to use for the UI,"
 	"und der Anzeige von Spielnamen.",					// "including game banner text."
 
-	"Das aktuelle Design für TWLoader.",					// "The theme to use in TWLoader."
+	"Das aktuelle Design für Eventide.",					// "The theme to use in Eventide."
 	"Drücke START für Unterarten hiervon.",					// "Press START for sub-themes."
 
 	"Die Farbe des oberen Hintergrunds,",					// "The color of the top background,"
@@ -109,8 +109,8 @@ static const char *const lang_DE[STR_MAX] = {
 	"Lädt ein benutzerdefiniertes Bild für",				// "Loads a custom bottom screen image"
 	"den unteren Bildschirm im Spiele-Menü.",				// "for the game menu."
 
-	"Die neuste TWLoader Version beim Start",				// "Auto-download the CIA of the latest"
-	"automatisch herunterladen.",						// "TWLoader version at launch."
+	"Die neuste Eventide Version beim Start",				// "Auto-download the CIA of the latest"
+	"automatisch herunterladen.",						// "Eventide version at launch."
 
 	"Wann soll der DS/DSi Startbildschirm",					// "Where do you want to see the"
 	"angezeigt werden?",							// "DS/DSi boot screen?"
@@ -156,7 +156,7 @@ static const char *const lang_DE[STR_MAX] = {
 	// "vermeidet Konflikt mit aktuellem libnds",				// "avoiding conflict with recent libnds."
 
 	"Aktualisiert nds-bootstrap bei jedem",					// "Auto-update nds-bootstrap at launch."
-	"Start von TWLoader automatisch.",					// (empty)
+	"Start von Eventide automatisch.",					// (empty)
 
 	"Wechsle zwischen der offiziellen und",					// "Change between release and"
 	"inoffiziellen nds-bootstrap Version.",					// "unofficial bootstrap file."

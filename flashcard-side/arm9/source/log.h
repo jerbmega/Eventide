@@ -1,6 +1,6 @@
 /**
 
-	This method is created by Jolty95 (umbjolt in gbatemp) to help debugging TWLoader
+	This method is created by Jolty95 (umbjolt in gbatemp) to help debugging Eventide
 	Use:
 		#int createLog() to start using it
 		#void Log(const char *message) write in log file a simple message. Use again if you want to write a new line with \n
@@ -12,7 +12,7 @@
 #ifndef LOG_H
 #define LOG_H
 
-#define LOG_PATH "sd:/_nds/twloader/log.ini"
+#define LOG_PATH "sd:/_nds/eventide/log.ini"
 
 extern bool LogCreated;
 

@@ -1,6 +1,6 @@
 // Game card functions.
-#ifndef TWLOADER_GAMECARD_H
-#define TWLOADER_GAMECARD_H
+#ifndef EVENTIDE_GAMECARD_H
+#define EVENTIDE_GAMECARD_H
 
 #include <vector>
 #include <string>
@@ -83,4 +83,4 @@ size_t gamecardGetIcon(void);
  */
 std::vector<std::wstring> gamecardGetText(void);
 
-#endif /* TWLOADER_GAMECARD_H */
+#endif /* EVENTIDE_GAMECARD_H */

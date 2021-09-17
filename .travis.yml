@@ -30,42 +30,42 @@ script:
   - echo "Patching Nightly"
   - python3.6 Nightlies/patch-nightly.py
   - cd twlnand-stage1
-  - echo "Compiling TWLoader NAND Side Stage 1 (part 1)"
+  - echo "Compiling Eventide NAND Side Stage 1 (part 1)"
   - make
-  - python patch_ndsheader_dsiware.py Stage1.nds --mode dsi --maker 01 --code TWLD --title "TWLOADER-TWL" --out Stage1-DSiWare.nds
+  - python patch_ndsheader_dsiware.py Stage1.nds --mode dsi --maker 01 --code TWLD --title "EVENTIDE-TWL" --out Stage1-DSiWare.nds
   - chmod +x ./make_cia
   - ./make_cia --srl="Stage1-DSiWare.nds"
   - cd ..
   - cd NTR_Launcher
-  - echo "Compiling TWLoader NAND Side Stage 1 (part 2)"
+  - echo "Compiling Eventide NAND Side Stage 1 (part 2)"
   - make
   - chmod +x ./make_cia
   - ./make_cia --srl="NTR_Launcher.nds"
   - cd ..
   - cd twlnand-stage2
-  - echo "Compiling TWLoader NAND Side Stage 2"
+  - echo "Compiling Eventide NAND Side Stage 2"
   - make
   - cd ..
-  - echo "Compiling TWLoader GUI (cia)"
+  - echo "Compiling Eventide GUI (cia)"
   - cd gui
   - make -j8 COMPILE_3DSX=0 IS_NIGHTLY=1
   - cd ..
   - echo "Creating release ZIP"
   - mkdir "Nightly"
   - cd "twlnand-stage1"
-  - cp "Stage1-DSiWare.cia" "../Nightly/TWLoader - TWLNAND side.cia"
+  - cp "Stage1-DSiWare.cia" "../Nightly/Eventide - TWLNAND side.cia"
   - cd ..
   - cd NTR_Launcher
-  - cp "NTR_Launcher.cia" "../Nightly/TWLoader -TWLNAND Side (part 2).cia"
+  - cp "NTR_Launcher.cia" "../Nightly/Eventide -TWLNAND Side (part 2).cia"
   - cd ..
   - cd "twlnand-stage2"
   - cp "Stage2.nds" "../Nightly/TWLD.twldr"
   - cd ..
   - cd gui
-  - cp "TWLoader.cia" "../Nightly/TWLoader.cia"
+  - cp "Eventide.cia" "../Nightly/Eventide.cia"
   - cd ..
   - cd "Nightly"
-  - zip "TWLoader.zip" *
+  - zip "Eventide.zip" *
   - dir
   - cd ..
   - echo "Compilation ended"

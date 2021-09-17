@@ -215,13 +215,13 @@ static const std::string slashchar = "/";
 static const std::string woodfat = "fat0:/";
 static const std::string dstwofat = "fat1:/";
 
-static const char bnriconfolder[] = "sdmc:/_nds/twloader/bnricons";
-static const char fcbnriconfolder[] = "sdmc:/_nds/twloader/bnricons/flashcard";
-static const char boxartfolder[] = "sdmc:/_nds/twloader/boxart";
-static const char fcboxartfolder[] = "sdmc:/_nds/twloader/boxart/flashcard";
-static const char gbboxartfolder[] = "sdmc:/_nds/twloader/boxart/gb";
-static const char nesboxartfolder[] = "sdmc:/_nds/twloader/boxart/nes";
-static const char slot1boxartfolder[] = "sdmc:/_nds/twloader/boxart/slot1";
+static const char bnriconfolder[] = "sdmc:/_nds/eventide/bnricons";
+static const char fcbnriconfolder[] = "sdmc:/_nds/eventide/bnricons/flashcard";
+static const char boxartfolder[] = "sdmc:/_nds/eventide/boxart";
+static const char fcboxartfolder[] = "sdmc:/_nds/eventide/boxart/flashcard";
+static const char gbboxartfolder[] = "sdmc:/_nds/eventide/boxart/gb";
+static const char nesboxartfolder[] = "sdmc:/_nds/eventide/boxart/nes";
+static const char slot1boxartfolder[] = "sdmc:/_nds/eventide/boxart/slot1";
 // End
 	
 bool keepsdvalue = false;
@@ -338,10 +338,10 @@ u64 getTIDFromCIA(char* path) {
  * @param install true is install, false to uninstall
  * @param mediaType, MEDIA_SD_CIA or MEDIA_NAND_CIA
  */
-void TWLoader_cia_manager(bool install, MediaType mediaType, const char* filename)
+void Eventide_cia_manager(bool install, MediaType mediaType, const char* filename)
 {
     if (install) {
-        if (logEnabled) LogFMA("TWLoader_cia_manager", "Installing", filename);
+        if (logEnabled) LogFMA("Eventide_cia_manager", "Installing", filename);
         Handle handle;
         long fileSize;
         char* buf;        
@@ -450,7 +450,7 @@ static void InstallCIA(const char *filename) {
         DialogBoxDisappear(12, 16, "fopen(nds_path) failed, skipping.");
     } else {
         DialogBoxAppear(12, 72, "Installing file...");
-        TWLoader_cia_manager(true, MEDIA_NAND_CIA, nds_path);
+        Eventide_cia_manager(true, MEDIA_NAND_CIA, nds_path);
         DialogBoxDisappear(12, 72, "Done!");
     }
     if (logEnabled) LogFMA("Install DSiWare", "Installing DSiWare cia...", "Done!");
@@ -1160,7 +1160,7 @@ static void LoadPerGameSettings(void)
 		inifilename = path;
 	}
 	char path[256];
-	snprintf(path, sizeof(path), "sdmc:/_nds/twloader/gamesettings/%s", inifilename.c_str());
+	snprintf(path, sizeof(path), "sdmc:/_nds/eventide/gamesettings/%s", inifilename.c_str());
 	CIniFile gamesettingsini(path);
 	settings.pergame.cpuspeed = gamesettingsini.GetInt("GAME-SETTINGS", "TWL_CLOCK", -1);
 	settings.pergame.usedonor = gamesettingsini.GetInt("GAME-SETTINGS", "USE_ARM7_DONOR", 1);
@@ -1205,7 +1205,7 @@ static void SavePerGameSettings(void)
 		inifilename = path;
 	}
 	char path[256];
-	snprintf(path, sizeof(path), "sdmc:/_nds/twloader/gamesettings/%s", inifilename.c_str());
+	snprintf(path, sizeof(path), "sdmc:/_nds/eventide/gamesettings/%s", inifilename.c_str());
 	CIniFile gamesettingsini(path);
 	gamesettingsini.SetInt("GAME-SETTINGS", "TWL_CLOCK", settings.pergame.cpuspeed);
 	gamesettingsini.SetInt("GAME-SETTINGS", "USE_ARM7_DONOR", settings.pergame.usedonor);
@@ -1221,7 +1221,7 @@ static void SavePerGameSettings(void)
  */
 static void SetPerGameSettings(void)
 {
-	std::string inifilename = "sd:/_nds/twloader/gamesettings/null";
+	std::string inifilename = "sd:/_nds/eventide/gamesettings/null";
 	if (!settings.twl.launchslot1) {
 		if (settings.twl.romtype == 0) {
 			inifilename = ReplaceAll(rom, ".nds", ".ini");
@@ -1235,18 +1235,18 @@ static void SetPerGameSettings(void)
 			inifilename = ReplaceAll(rom, ".fds", ".ini");
 		}
 		char path[256];
-		snprintf(path, sizeof(path), "%s/%s", "sd:/_nds/twloader/gamesettings", inifilename.c_str());
+		snprintf(path, sizeof(path), "%s/%s", "sd:/_nds/eventide/gamesettings", inifilename.c_str());
 		inifilename = path;
 	} else {
 		if (settings.twl.forwarder) {
 			char path[256];
-			snprintf(path, sizeof(path), "%s/%s", "sd:/_nds/twloader/gamesettings/flashcard", rom);
+			snprintf(path, sizeof(path), "%s/%s", "sd:/_nds/eventide/gamesettings/flashcard", rom);
 			inifilename = path;
 		}
 	}
-	CIniFile settingsini("sdmc:/_nds/twloader/settings.ini");
+	CIniFile settingsini("sdmc:/_nds/eventide/settings.ini");
 	settingsini.SetString("TWL-MODE", "GAMESETTINGS_PATH", inifilename);
-	settingsini.SaveIniFile("sdmc:/_nds/twloader/settings.ini");
+	settingsini.SaveIniFile("sdmc:/_nds/eventide/settings.ini");
 }
  
 bool dspfirmfound = false;
@@ -2293,7 +2293,7 @@ const u64 TWLNAND_TID = 0x0004800554574C44ULL;
 extern const u64 TWLNANDTWLTOUCH_TID;
 const u64 TWLNANDTWLTOUCH_TID = 0x0004800554434C44ULL;
 
-// TWLoader's NTR Launcher Title ID.
+// Eventide's NTR Launcher Title ID.
 extern const u64 NTRLAUNCHER_TID;
 const u64 NTRLAUNCHER_TID = 0x0004800554574C31ULL;
 
@@ -2835,7 +2835,7 @@ int main(){
 	svcCreateEvent(&threadRequest,(ResetType)0);
 	createThread((ThreadFunc)threadLoadBoxArt);
 
-	if (logEnabled && aptMainLoop()) LogFM("Main.aptMainLoop", "TWLoader loaded.");
+	if (logEnabled && aptMainLoop()) LogFM("Main.aptMainLoop", "Eventide loaded.");
 	while(run && aptMainLoop()) {
 		pp2d_begin_draw(GFX_TOP, GFX_LEFT);
 		
@@ -2994,7 +2994,7 @@ int main(){
 							for (loadbnriconnum = 0; loadbnriconnum < gamesPerPage; loadbnriconnum++) {						
 								if (loadbnriconnum+settings.ui.pagenum*gamesPerPage < (int)files.size()) {
 									const char *tempfile = files.at(loadbnriconnum+settings.ui.pagenum*gamesPerPage).c_str();
-									snprintf(path, sizeof(path), "sdmc:/_nds/twloader/bnricons/%s.bin", tempfile);
+									snprintf(path, sizeof(path), "sdmc:/_nds/eventide/bnricons/%s.bin", tempfile);
 									if (access(path, F_OK) != -1) {
 										StoreBnrIconPath(path);
 									} else {
@@ -3012,7 +3012,7 @@ int main(){
 							for (loadbnriconnum = 0; loadbnriconnum < gamesPerPage; loadbnriconnum++) {						
 								if (loadbnriconnum+settings.ui.pagenum*gamesPerPage < (int)matching_files.size()) {
 									const char *tempfile = matching_files.at(loadbnriconnum+settings.ui.pagenum*gamesPerPage).c_str();
-									snprintf(path, sizeof(path), "sdmc:/_nds/twloader/bnricons/%s.bin", tempfile);
+									snprintf(path, sizeof(path), "sdmc:/_nds/eventide/bnricons/%s.bin", tempfile);
 									if (access(path, F_OK) != -1) {
 										StoreBnrIconPath(path);
 									} else {
@@ -3792,10 +3792,10 @@ int main(){
 						bnriconnum = settings.ui.cursorPosition;
 						if (settings.twl.forwarder) {
 							const char *tempfile = fcfiles.at(bnriconnum).c_str();
-							snprintf(path, sizeof(path), "sdmc:/_nds/twloader/bnricons/flashcard/%s.bin", tempfile);
+							snprintf(path, sizeof(path), "sdmc:/_nds/eventide/bnricons/flashcard/%s.bin", tempfile);
 						} else {
 							const char *tempfile = files.at(bnriconnum).c_str();
-							snprintf(path, sizeof(path), "sdmc:/_nds/twloader/bnricons/%s.bin", tempfile);
+							snprintf(path, sizeof(path), "sdmc:/_nds/eventide/bnricons/%s.bin", tempfile);
 						}
 						if (access(path, F_OK) != -1) {
 							LoadBNRIcon_R4Theme(path);
@@ -4899,7 +4899,7 @@ int main(){
 						settings.twl.forwarder = true;
 						settings.twl.launchslot1 = true;
 						keepsdvalue = true;
-						rom = "_nds/twloader.nds";
+						rom = "_nds/eventide.nds";
 						usepergamesettings = false;
 						if (logEnabled)	LogFM("Main", "Switching to NTR/TWL-mode");
 						applaunchon = true;
@@ -5096,7 +5096,7 @@ int main(){
 					} else if((hDown & KEY_Y) && settings.twl.forwarder && !isDemo){
 						settings.twl.launchslot1 = true;
 						keepsdvalue = true;
-						rom = "_nds/twloader.nds";
+						rom = "_nds/eventide.nds";
 						usepergamesettings = false;
 						if (logEnabled)	LogFM("Main", "Switching to NTR/TWL-mode");
 						applaunchon = true;
@@ -5317,7 +5317,7 @@ int main(){
 					} else if((hDown & KEY_Y) && settings.twl.forwarder && !isDemo){
 						settings.twl.launchslot1 = true;
 						keepsdvalue = true;
-						rom = "_nds/twloader.nds";
+						rom = "_nds/eventide.nds";
 						usepergamesettings = false;
 						if (logEnabled)	LogFM("Main", "Switching to NTR/TWL-mode");
 						applaunchon = true;
@@ -5738,7 +5738,7 @@ int main(){
 										settings.twl.launchslot1 = true;
 										if (settings.twl.forwarder) {
 											keepsdvalue = true;
-											rom = "_nds/twloader.nds";
+											rom = "_nds/eventide.nds";
 										}
 										applaunchprep = true;
 									}
@@ -6703,7 +6703,7 @@ int main(){
 				tid = TWLNAND_TID;
 			}
 			if (settings.twl.forwarder) {
-				CIniFile settingsini("sdmc:/_nds/twloader/settings.ini");
+				CIniFile settingsini("sdmc:/_nds/eventide/settings.ini");
 				if(settingsini.GetInt("TWL-MODE","FLASHCARD",0) == 0
 				|| settingsini.GetInt("TWL-MODE","FLASHCARD",0) == 1
 				|| settingsini.GetInt("TWL-MODE","FLASHCARD",0) == 4) {

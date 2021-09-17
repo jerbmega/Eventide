@@ -1,6 +1,6 @@
 /**
 
-	This method is created by Jolty95 (umbjolt in gbatemp) to parse KeyBoard input to TWLoader.
+	This method is created by Jolty95 (umbjolt in gbatemp) to parse KeyBoard input to Eventide.
 	This code is an application of libctru swkbd using native 3DS software keyboard.
 	Please, do not modify it if there is not reason to do it.
 	

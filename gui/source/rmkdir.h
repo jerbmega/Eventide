@@ -1,6 +1,6 @@
 // rmkdir(): Recursive mkdir().
-#ifndef TWLOADER_RMKDIR_H
-#define TWLOADER_RMKDIR_H
+#ifndef EVENTIDE_RMKDIR_H
+#define EVENTIDE_RMKDIR_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,4 +18,4 @@ int rmkdir(const char *path, int mode);
 }
 #endif
 
-#endif /* TWLOADER_RMKDIR_H */
+#endif /* EVENTIDE_RMKDIR_H */

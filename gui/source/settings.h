@@ -1,6 +1,6 @@
-// TWLoader: Settings screen.
-#ifndef TWLOADER_SETTINGS_H
-#define TWLOADER_SETTINGS_H
+// Eventide: Settings screen.
+#ifndef EVENTIDE_SETTINGS_H
+#define EVENTIDE_SETTINGS_H
 
 #include <string>
 #include "graphic.h"
@@ -180,4 +180,4 @@ void LoadSettings(void);
  */
 void SaveSettings(void);
 
-#endif /* TWLOADER_SETTINGS_H */
+#endif /* EVENTIDE_SETTINGS_H */

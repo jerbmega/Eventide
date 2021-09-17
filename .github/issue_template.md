@@ -1,8 +1,8 @@
 <!---
-##### THIS IS THE ISSUE TRACKER FOR TWLOADER. For support please go to:
-###### TWLoader GBATemp thread: https://gbatemp.net/threads/twloader-ctr-mode-nds-app.448375/
-###### Also check the Wiki (https://github.com/Robz8/TWLoader/wiki) before making an issue.
-###### Keep in mind that TWLoader is only a frontend for nds-bootstrap. DO NOT OPEN AN ISSUE FOR NOT LOADING GAMES THAT ARE NOT SUPPORTED BY NDS-BOOTSTRAP YET!
+##### THIS IS THE ISSUE TRACKER FOR EVENTIDE. For support please go to:
+###### Eventide GBATemp thread: https://gbatemp.net/threads/eventide-ctr-mode-nds-app.448375/
+###### Also check the Wiki (https://github.com/Robz8/Eventide/wiki) before making an issue.
+###### Keep in mind that Eventide is only a frontend for nds-bootstrap. DO NOT OPEN AN ISSUE FOR NOT LOADING GAMES THAT ARE NOT SUPPORTED BY NDS-BOOTSTRAP YET!
 ###### Issues that don't attach any log file or any reproducible method will be closed.
 ###### Issues without replies in 15 days will be closed too.
 ###### If you want to create a request, please, delete all text after this message.
@@ -30,7 +30,7 @@ Tell us which CFW do you have:
 - [ ]  AuReiNAND
 - [ ]  Other CFW [specify]
 - [ ]  Older CFW
-- [ ]  Not using CFW / Using TWLoader in 3DSX format
+- [ ]  Not using CFW / Using Eventide in 3DSX format
 
 
 ### Console version
@@ -40,7 +40,7 @@ Tell us which version do you have:
 - [ ]  >= 11.4
 - [ ]  < 11.4
 
-### TWLoader version
+### Eventide version
 
 Tell us which versions you are using:
 

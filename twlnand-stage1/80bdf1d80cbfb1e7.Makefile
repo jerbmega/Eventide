@@ -128,8 +128,8 @@ dist:	all
 	
 $(TARGET).nds:	$(TARGET).arm7 $(TARGET).arm9
 	ndstool	-c $(TARGET).nds -7 $(TARGET).arm7.elf -9 $(TARGET).arm9.elf \
-			-b icon.bmp "TWLoader;TWL-MODE app;Robz8" \ 
-			-g TWLD 01 "TWLOADER-TWL" -z 80040000 -u 00030005
+			-b icon.bmp "Eventide;TWL-MODE app;Robz8" \ 
+			-g TWLD 01 "EVENTIDE-TWL" -z 80040000 -u 00030005
 	python patch_ndsheader_dsiware.py $(CURDIR)/$(TARGET).nds
 
 $(TARGET).arm7: arm7/$(TARGET).elf
