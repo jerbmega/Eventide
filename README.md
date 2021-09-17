@@ -1,5 +1,7 @@
 # Eventide[![Build Status](https://travis-ci.org/Robz8/Eventide.svg?branch=master)](https://travis-ci.org/Robz8/Eventide)
 
+# Eventide[![Build Status](https://github.com/jerbmega/Eventide/actions/workflows/ci.yml/badge.svg)]
+
 Eventide is a CTR-mode frontend for nds-bootstrap. Forked from TWLoader, Eventide aims to be an alternative to TWiLight Menu++.
 
 # Why?
@@ -10,20 +12,11 @@ The straw that broke the camel's back was when I was attempting to get widescree
 
 # Usage / FAQ
 
-**Please, read the _[wiki](https://github.com/Robz8/Eventide/wiki)_ before asking a question**
+TODO 
 
 # Building
 
-Building this app by yourself require `DevKitARM` with `DevKitPro` .You will also need BernardoGiordano's `pp2d` (included as submodule) and `citro3ds` (included in DevKitPro). You also need makerom on your DevKitPro environment.
+Install [devkitPRO and devkitARM](https://devkitpro.org/wiki/Getting_Started). You will also need [makerom](https://github.com/3DSGuy/Project_CTR/releases/tag/makerom-v0.17) and [bannertool](https://github.com/Steveice10/bannertool/releases/latest) in your PATH.
 
-For using `compile.bat` you must `git clone --recursive https://github.com/Robz8/Eventide.git` this repository.
+On Windows, use `compile.bat`, and on Unix systems, use `compile.sh`. This should work on any *nix that devkitPro supports, but I have only tested on Linux.
 
-# Credits
-
-- ahezard: [nds-bootstrap](https://github.com/ahezard/nds-bootstrap)
-- Apache Thunder: NTR-Launcher code, and the recreation of the DS/DSi boot screens.
-- billy-acuna: Old Eventide logo.
-- Joom: New and current Eventide logo.
-- MarcusD: Rainbow colors in Notification LED code.
-- shutterbug2000: File browsing code.
-- spinal_cord: DSi4DS assets.

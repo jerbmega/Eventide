@@ -1,0 +1,93 @@
+name: CI
+
+on: [push]
+
+jobs:
+  run_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python 2
+        uses: actions/setup-python@v2
+        with:
+          python-version: '2.x'
+      
+      - name: Setup Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Set up devkitARM
+        run: |
+          sudo apt update
+          sudo apt -y install gdebi-core
+          wget $(curl -s https://api.github.com/repos/devkitPro/pacman/releases/latest | jq -r ".assets[] | select(.name | test(\"amd64\")) | .browser_download_url")
+          sudo gdebi -n devkitpro-pacman.amd64.deb
+          rm devkitpro-pacman.amd64.deb
+
+      - name: Set up prerequisites
+        run: |
+          wget https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.17/makerom-v0.17-ubuntu_x86_64.zip
+          unzip makerom-v0.17-ubuntu_x86_64.zip
+          chmod +x makerom
+          mv makerom /usr/bin/makerom
+          rm makerom-v0.17-ubuntu_x86_64.zip
+          wget $(curl -s https://api.github.com/repos/Steveice10/bannertool/releases/latest | jq -r ".assets[]| .browser_download_url")  
+          unzip bannertool.zip linux-x86_64/bannertool
+          chmod +x linux-x86_64/bannertool
+          mv linux-x86_64/bannertool /usr/bin/bannertool
+          rm bannertool.zip
+          rm -r linux-x86_64
+          python3 -m pip install requests
+          python3 -m pip install gitpython
+          sudo apt install - gcc-6 g++-6 libstdc++6 lftp
+
+      - name: Build Nightly
+        run: | 
+          set -e
+          echo "Starting compilation"
+          echo "Patching Nightly"
+          python3 Nightlies/patch-nightly.py
+          cd twlnand-stage1
+          echo "Compiling Eventide NAND Side Stage 1 (part 1)"
+          make
+          python patch_ndsheader_dsiware.py Stage1.nds --mode dsi --maker 01 --code TWLD --title "EVENTIDE-TWL" --out Stage1-DSiWare.nds
+          chmod +x ./make_cia
+          ./make_cia --srl="Stage1-DSiWare.nds"
+          cd ../NTR_Launcher
+          echo "Compiling Eventide NAND Side Stage 1 (part 2)"
+          make
+          chmod +x ./make_cia
+          ./make_cia --srl="NTR_Launcher.nds"
+          cd ../twlnand-stage2
+          echo "Compiling Eventide NAND Side Stage 2"
+          make
+          cd ..
+          echo "Compiling Eventide GUI (cia)"
+          cd gui
+          make -j8 COMPILE_3DSX=0 IS_NIGHTLY=1
+          cd ..
+          echo "Creating release ZIP"
+          mkdir "Nightly"
+          cd "twlnand-stage1"
+          cp "Stage1-DSiWare.cia" "../Nightly/Eventide - TWLNAND side.cia"
+          cd ../NTR_Launcher
+          cp "NTR_Launcher.cia" "../Nightly/Eventide -TWLNAND Side (part 2).cia"
+          cd ../"twlnand-stage2"
+          cp "Stage2.nds" "../Nightly/TWLD.twldr"
+          cd ../gui
+          cp "Eventide.cia" "../Nightly/Eventide.cia"
+          cd ../"Nightly"
+          zip "Eventide.zip" *
+          dir
+          cd ..
+          echo "Compilation ended"
+
+          - name: Upload nightly artifact
+            uses: actions/upload-artifact@v2
+            with:
+              name: eventide
+                path: Eventide.zip
+        

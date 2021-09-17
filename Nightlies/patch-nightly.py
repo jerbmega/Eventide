@@ -14,12 +14,12 @@ with open("gui/Makefile", "w") as f:
 print("Patching ROMFS...")
 copyfile("Nightlies/romfs/logo.png", "gui/romfs/graphics/logo/logo.png")
 copyfile("Nightlies/romfs/logo_demo.png", "gui/romfs/graphics/logo/logo_demo.png")
-print("Patching Nightly hash...")
-commit_json = requests.get(
-    "https://raw.githubusercontent.com/Jolty95/Eventide-update/master/beta/updatenightlies.json").json()
-with open("updatenightlies.json", "w") as updatenightlies:
-    repo = git.Repo(search_parent_directories=True)
-    sha = repo.head.object.hexsha
-    commit_json["nightlies"]["commit"] = sha
-    updatenightlies.write(json.dumps(commit_json, sort_keys=True, indent=4, separators=(',', ': ')))
+#print("Patching Nightly hash...")
+#commit_json = requests.get(
+#    "https://raw.githubusercontent.com/Jolty95/Eventide-update/master/beta/updatenightlies.json").json()
+#with open("updatenightlies.json", "w") as updatenightlies:
+#    repo = git.Repo(search_parent_directories=True)
+#    sha = repo.head.object.hexsha
+#    commit_json["nightlies"]["commit"] = sha
+#    updatenightlies.write(json.dumps(commit_json, sort_keys=True, indent=4, separators=(',', ': ')))
 print("All done!")
