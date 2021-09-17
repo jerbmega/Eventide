@@ -32,12 +32,12 @@ jobs:
           wget https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.17/makerom-v0.17-ubuntu_x86_64.zip
           unzip makerom-v0.17-ubuntu_x86_64.zip
           chmod +x makerom
-          mv makerom /usr/bin/makerom
+          sudo mv makerom /usr/bin/makerom
           rm makerom-v0.17-ubuntu_x86_64.zip
           wget $(curl -s https://api.github.com/repos/Steveice10/bannertool/releases/latest | jq -r ".assets[]| .browser_download_url")  
           unzip bannertool.zip linux-x86_64/bannertool
           chmod +x linux-x86_64/bannertool
-          mv linux-x86_64/bannertool /usr/bin/bannertool
+          sudo mv linux-x86_64/bannertool /usr/bin/bannertool
           rm bannertool.zip
           rm -r linux-x86_64
           python3 -m pip install requests
