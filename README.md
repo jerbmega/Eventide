@@ -1,4 +1,5 @@
-# Eventide[![Build Status](https://travis-ci.org/Robz8/Eventide.svg?branch=master)](https://travis-ci.org/Robz8/Eventide)
+# **!!THIS IS UNUSABLE RIGHT NOW!!** 
+## Eventide does not compile right now. This disclaimer will be removed once it does.
 
 # Eventide[![Build Status](https://github.com/jerbmega/Eventide/actions/workflows/ci.yml/badge.svg)]
 
