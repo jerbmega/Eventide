@@ -2760,7 +2760,7 @@ int main(){
 	amInit();
 	ptmuInit();	// For battery status
 	ptmuxInit();	// For AC adapter status
-	sdmcInit();
+	archiveMountSdmc();
 	romfsInit();
 	srvInit();
 	hidInit();
@@ -6896,7 +6896,7 @@ int main(){
 	ptmuExit();
 	amExit();
 	cfguExit();
-	sdmcExit();
+	archiveUnmountAll();
 
 	return 0;
 }
