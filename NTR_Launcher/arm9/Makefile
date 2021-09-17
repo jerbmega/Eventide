@@ -28,6 +28,8 @@ CFLAGS	:=	-g -Wall -O2\
  			-fomit-frame-pointer\
 			-ffast-math \
 			-Wall -Wextra -Werror \
+			-Wno-ignored-qualifiers -Wno-array-bounds \
+                        -Wno-stringop-overflow \
 			$(ARCH)
 
 CFLAGS	+=	$(INCLUDE) -DARM9 -fno-strict-aliasing

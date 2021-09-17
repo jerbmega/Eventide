@@ -195,7 +195,8 @@ int arm7_loadBinary (void) {
 	*((u16*)0x027ff80a) = ndsHeader->secureCRC16;	// Secure Area Checksum, CRC-16 of [ [20h]..7FFFh]
 	*((u16*)0x027ffc40) = 0x1;						// Booted from card -- EXTREMELY IMPORTANT!!! Thanks to cReDiAr
 	
-	cardRead(ndsHeader->arm9romOffset, (u32*)ndsHeader->arm9destination, ndsHeader->arm9binarySize);	cardRead(ndsHeader->arm7romOffset, (u32*)ndsHeader->arm7destination, ndsHeader->arm7binarySize);
+	cardRead(ndsHeader->arm9romOffset, (u32*)ndsHeader->arm9destination, ndsHeader->arm9binarySize);
+	cardRead(ndsHeader->arm7romOffset, (u32*)ndsHeader->arm7destination, ndsHeader->arm7binarySize);
 	return ERR_NONE;
 }
 
@@ -208,7 +209,7 @@ Written by Darkain, modified by Chishm.
 void arm7_startBinary (void)
 {
 	// Wait until the ARM9 is ready
-    while (arm9_stateFlag != ARM9_READY);
+    	while (arm9_stateFlag != ARM9_READY);
 
 	while(REG_VCOUNT!=191);
 	while(REG_VCOUNT==191);
@@ -232,7 +233,7 @@ void arm7_main (void) {
 	int errorCode;
 	
 	// Wait for ARM9 to at least start
-    while (arm9_stateFlag < ARM9_START);
+    	while (arm9_stateFlag < ARM9_START);
 
 	debugOutput (ERR_STS_CLR_MEM);
 	
