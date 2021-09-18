@@ -26,7 +26,6 @@ using std::wstring;
 #include <3ds.h>
 #include <3ds/types.h>
 #include "graphic.h"
-#include "pp2d/pp2d.h"
 
 #define CONFIG_3D_SLIDERSTATE (*(float *)0x1FF81080)
 

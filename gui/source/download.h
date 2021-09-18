@@ -2,7 +2,6 @@
 #define DOWNLOAD_H
 
 #include "graphic.h"
-#include "pp2d/pp2d.h"
 
 /**
  * Check Wi-Fi status.

@@ -2,7 +2,6 @@
 #define DSBOOTSPLASH_H
 
 #include "graphic.h"
-#include "pp2d/pp2d.h"
 
 /**
  * Fade from white to black.
