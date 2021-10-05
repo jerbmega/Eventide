@@ -116,7 +116,7 @@ export GAME_TITLE := $(TARGET)
 
 .PHONY: bootloader bootstub clean
 
-all:	bootloader bootstub $(TARGET).nds
+all:	bootloader bootstub $(TARGET).cia
 
 dist:	all
 	@rm	-fr	Stage1
@@ -124,7 +124,12 @@ dist:	all
 	@cp Stage1.nds Stage1/BOOT.NDS
 	@cp BootStrap/_BOOT_MP.NDS BootStrap/TTMENU.DAT BootStrap/_DS_MENU.DAT BootStrap/ez5sys.bin BootStrap/akmenu4.nds Stage1
 	@tar -cvjf hbmenu-$(VERSION).tar.bz2 Stage1 testfiles README.md COPYING -X exclude.lst
-	
+
+$(TARGET).cia: $(TARGET).nds
+	python patch_ndsheader_dsiware.py Stage1.nds --mode dsi --maker 01 --code TWLD --title "EVENTIDE-TWL" --out Stage1-DSiWare.nds
+	chmod +x make_cia
+	./make_cia --srl="Stage1-DSiWare.nds"
+
 $(TARGET).nds:	$(TARGET).arm7 $(TARGET).arm9
 	ndstool	-c $(TARGET).nds -7 $(TARGET).arm7.elf -9 $(TARGET).arm9.elf -b icon.bmp "Eventide;TWLNAND side;Robz8" -g TWLD 01 "EVENTIDE-TWL" -z 80040000 -u 00030005
 
